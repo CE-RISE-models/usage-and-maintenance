@@ -8,35 +8,92 @@ Repository for the data model capturing how a product is operated and maintained
 ---
 
 ## Data Model Structure
-Put here description of data model structure.
+This data model captures how a product is operated and maintained throughout its lifecycle, using a **mixed approach** that combines:
+- **Event-based data**: For discrete maintenance actions, repairs, and service activities that occur at specific points in time
+- **State-based data**: For cumulative usage metrics, current performance levels, and static reference information
 
 ### Key Design Principles
+1. **No overlap with other models**: Excludes static product information (Layer 1), lifecycle events and diagnostic results (Layer 2), and compliance data (Layer 6)
+2. **Mixed temporal approach**: Combines timestamped events with accumulated state metrics
+3. **Operational focus**: Centers on HOW the product is used and maintained, not WHAT it is or WHERE it's been
+4. **Service integration**: Links maintenance activities to service providers and spare parts information
+5. **Instruction repository**: Maintains operational and maintenance guidance separate from regulatory requirements
 
 
 ### Core Hierarchy
 
 ```
-JustAnExample (root)
-├── 1. GeneralProductInformation
-│   ├── LotBatchNumber
-│   ├── GTIN14
-│   ├── SerialNumber
-│   ├── ProductImages
-│   ├── ProductType
-│   └── UniqueProductIdentifier
-
+UsageAndMaintenance (root)
+├── 1. UseInstructions (STATE-BASED)
+│   ├── OperatingManualURL
+│   ├── QuickStartGuide
+│   ├── SafetyPrecautions
+│   └── OptimalOperatingParameters
+│
+├── 2. MaintenanceInstructions (STATE-BASED)
+│   ├── MaintenanceManualURL
+│   ├── RoutineMaintenanceProcedures
+│   ├── CleaningInstructions
+│   └── CalibrationProcedures
+│
+├── 3. UsageRelatedData (STATE-BASED)
+│   ├── UsageMetrics
+│   │   ├── TotalOperatingHours
+│   │   ├── PowerOnCycles
+│   │   ├── EnergyConsumption
+│   │   └── UsageIntensity
+│   ├── OperationalConditions
+│   │   ├── TypicalOperatingEnvironment
+│   │   └── LocationType
+│   ├── UsagePatterns
+│   │   ├── PrimaryUseCase
+│   │   └── IdleTimePercentage
+│   └── PerformanceTracking
+│       ├── CurrentEfficiency
+│       └── ReliabilityScore
+│
+└── 4. MaintenanceRepairRelatedData (MIXED)
+    ├── MaintenanceSchedule (STATE)
+    │   ├── PreventiveMaintenanceIntervals
+    │   └── PredictiveMaintenanceTriggers
+    ├── MaintenanceHistory (EVENT-BASED)
+    │   ├── MaintenanceDate
+    │   ├── MaintenanceType
+    │   ├── ActionsPerformed
+    │   └── NextMaintenanceDue
+    ├── RepairHistory (EVENT-BASED)
+    │   ├── RepairDate
+    │   ├── FailureDescription
+    │   ├── RepairActions
+    │   └── ComponentsReplaced
+    ├── SparePartsInformation (STATE)
+    │   └── CriticalSpareParts
+    └── ServiceProviderInformation (STATE)
+        └── AuthorizedServiceCenters
 ```
 
 ### Workflow Sequence
 
-#### **Step 1: Just another example** 
-Basic product identification with multiple identifier types:
-- **LotBatchNumber**: Lot/batch tracking information
-- **GTIN14**: Global Trade Item Number (14-digit format with GS1 integration)
-- **SerialNumber**: Individual product serial numbers
-- **ProductImages**: Product images for branding/visual identification (comma-separated URLs)
-- **ProductType**: Product classification (3-digit GTIN prefix or alphanumeric code)
-- **UniqueProductIdentifier**: Enables web link to product passport
+#### **Step 1: Reference Information Management (State-Based)**
+Static instructional and scheduling content:
+- **UseInstructions**: How to operate the product
+- **MaintenanceInstructions**: How to maintain the product
+- **MaintenanceSchedule**: When maintenance should occur
+- **SparePartsInformation**: What parts are needed
+
+#### **Step 2: Usage Data Collection (State-Based)** 
+Continuous accumulation of operational metrics:
+- **UsageMetrics**: Cumulative measurements (operating hours, energy consumption)
+- **OperationalConditions**: Environmental parameters during use
+- **UsagePatterns**: Behavioral patterns and use cases
+- **PerformanceTracking**: Current performance vs. baseline
+
+#### **Step 3: Maintenance Event Recording (Event-Based)**
+Discrete maintenance activities with timestamps:
+- **MaintenanceHistory**: Each maintenance action as a timestamped event
+- **RepairHistory**: Each repair as a separate event with failure analysis
+- **ServiceProvider**: Link to who performed the service
+- **PartsReplaced**: Components changed during each event
 
 ### Data Properties
 
@@ -46,20 +103,20 @@ Each class has a corresponding value property (e.g., `name_value`, `company_id_v
 
 Every data point in the model includes a `sql_identifier` annotation that serves as a unique, machine-friendly database identifier. These identifiers follow a structured namespace pattern to ensure uniqueness across the entire data model:
 
-**Pattern**: `MODEL_[category]_[specific_name]`
+**Pattern**: `uam_[category]_[specific_name]`
 
 **Features:**
-- **Product Profile Prefix**: All identifiers start, for instance, with `pro_` to clearly identify them as belonging to the Product Profile data model
-- **Hierarchical Namespacing**: Uses category prefixes (`gen_info_`, `mfr_info_`, `imp_info_`, `spec_info_`) to provide context and prevent naming conflicts
+- **Usage and Maintenance Prefix**: All identifiers start with `uam_` to clearly identify them as belonging to the Usage and Maintenance data model
+- **Hierarchical Namespacing**: Uses category prefixes (`usage_`, `maint_`, `repair_`, `inst_`) to provide context and prevent naming conflicts
 - **Database-Friendly**: Uses underscores and avoids special characters for SQL compatibility
 - **Unique Across Model**: No duplicate identifiers, even when similar concepts appear in different parts of the hierarchy
 - **Reasonable Length**: Abbreviated but meaningful names that balance clarity with practical database usage
 
 **Examples:**
-- `pro_gen_info_gtin14` - GTIN-14 identifier in General Product Information
-- `pro_mfr_info_facility` - Manufacturing facility in Manufacturer Information  
-- `pro_imp_info_eori` - EORI number in Import/Export Information
-- `pro_spec_info_materials` - Material composition in Product Specifications
+- `uam_usage_total_hours` - Total operating hours in usage metrics
+- `uam_maint_history_date` - Date of maintenance event in maintenance history  
+- `uam_repair_failure_desc` - Failure description in repair history
+- `uam_inst_operating_manual` - Operating manual URL in use instructions
 
 This identifier system enables seamless integration with databases and ensures clear data model composition when combining with other CE-RISE data models.
 
@@ -67,11 +124,33 @@ This identifier system enables seamless integration with databases and ensures c
 
 ## Development Roadmap
 
-| Step | Component | Criticalities Identified | Solutions Implemented | Status | Missing/TODO |
-|------|-----------|-------------------------|----------------------|--------|--------------|
-| **1** | **ExampleExampleExample** | • Unique product identifier lacks precision and standards<br>• No reference integration with discoverability/registries<br>• Missing serial number and lot number storage<br>• No connection to standard product nomenclature<br>• No product description and branding<br>• No classification for grouping products | • Added GS1 prefix and ontology integration<br>• Implemented GTIN-14 + serial number approach<br>• Added Schema.org prefix<br>• Created GTIN-14, Serial number, Lot/batch number subclasses<br>• Added ProductImages (comma-separated image URLs with format validation)<br>• Added ProductType (3-digit GTIN prefix or alphanumeric classification)<br>• Referenced UNTP framework for discoverability | **COMPLETED** | • UNTP Identity Resolver integration 
+| Step | Component | Sub-Components | Criticalities Identified | Solutions Planned | Status | Missing/TODO |
+|------|-----------|---------------|-------------------------|-------------------|--------|--------------|
+| **1** | **Reference Information<br>(Static)** | • UseInstructions<br>• MaintenanceInstructions<br>• MaintenanceSchedule<br>• SparePartsInfo<br>• ServiceProviderInfo | • Separation from regulatory requirements<br>• Multi-language support needs<br>• Version control for updates<br>• Preventive vs predictive scheduling<br>• Parts availability tracking<br>• Service provider network | • Separate use and maintenance instructions<br>• Plan URL-based document references<br>• Design flexible scheduling framework<br>• Include parts catalog structure<br>• Add service center listings | **PLANNED** | • Interactive instructions<br>• AR/VR guidance<br>• Real-time parts availability<br>• Automated scheduling<br>• 3D printing specs |
+| **2** | **Usage Data Collection<br>(State-Based)** | • UsageMetrics<br>• OperationalConditions<br>• UsagePatterns<br>• PerformanceTracking | • Distinguish cumulative vs. instantaneous metrics<br>• Usage patterns vary by product type<br>• Performance degradation tracking<br>• Integration with IoT data sources<br>• Standardization of usage intensity levels | • Plan state-based cumulative structure<br>• Design flexible pattern categories<br>• Include performance baselines<br>• Define intensity classifications<br>• Add environment tracking | **PLANNED** | • IoT data ingestion<br>• Usage anomaly detection<br>• Multi-user tracking<br>• Energy efficiency calcs<br>• Predictive analytics |
+| **3** | **Maintenance/Repair Events<br>(Event-Based)** | • MaintenanceHistory<br>• RepairHistory | • Event-based timestamp structure<br>• Link to service providers<br>• Parts traceability<br>• Cost tracking for TCO<br>• Root cause analysis<br>• Failure pattern recognition | • Design event-based structure<br>• Include technician IDs<br>• Add parts replacement tracking<br>• Plan failure categorization<br>• Include effectiveness metrics | **PLANNED** | • Diagnostic integration<br>• Warranty validation<br>• Failure prediction<br>• Component reliability<br>• Knowledge base |
 
 ### Integration Opportunities
+
+1. **With Layer 2 (Lifecycle Events)**:
+   - Maintenance events could trigger lifecycle event records
+   - Ownership changes might reset certain usage metrics
+
+2. **With Layer 2.a (Diagnostic Results)**:
+   - Diagnostic outputs inform maintenance scheduling
+   - Test results validate repair effectiveness
+
+3. **With Layer 4 (Impact Assessment)**:
+   - Usage data feeds into actual environmental impact calculations
+   - Maintenance frequency affects lifecycle assessments
+
+4. **With Layer 5 (Circularity & EoL)**:
+   - Usage intensity influences remaining useful life
+   - Maintenance history affects refurbishment potential
+
+5. **With Layer 6 (Compliance)**:
+   - Maintenance records support warranty claims
+   - Usage data validates compliance with operational limits
 
 
 
