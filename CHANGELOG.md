@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to the CE-RISE RE-XXX Data Model will be documented in this file.
+All notable changes to the CE-RISE Usage and Maintenance Data Model will be documented in this file.
 
 ## [0.0.1] - unreleased
 

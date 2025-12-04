@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: Project template for data models developed within the CE-RISE Horizon Europe project
+title: CE-RISE Usage and Maintenance
 message: >-
   v0.0.1 - Initial sketch of project template.
 type: software
@@ -14,10 +14,10 @@ identifiers:
   - type: doi
     value: xxx_to_be_obtained_xxx
     description: This DOI represents all software versions.
-repository-code: 'https://codeberg.org/CE-RISE_models/template-data-model'
-url: 'https://ce-rise-models.codeberg.page/template-data-model/'
+repository-code: 'https://codeberg.org/CE-RISE_models/usage-and-maintenance'
+url: 'https://ce-rise-models.codeberg.page/usage-and-maintenance/'
 abstract: >-
-  Project template for data models developed within the CE-RISE Horizon Europe project.
+  Repository for the data model capturing how a product is operated and maintained, including usage records, maintenance actions, service histories, and legally required or product-specific instructions for use and upkeep.
 keywords:
   - CE-RISE
   - Data Model

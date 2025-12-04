@@ -1,9 +1,8 @@
-# CE-RISE Data Model Template
+# CE-RISE Usage and Maintenance
 
-[![DOI](https://zenodo.org/badge/DOI/TOBEOBTAINED.svg)](https://doi.org/TOBEOBTAINED) [![Schemas](https://img.shields.io/badge/Generated%20Schema%20Files-JSON%2C%20SHACL%2C%20OWL-32CD32)](https://ce-rise-models.codeberg.page/<repo-name>/)
+[![DOI](https://zenodo.org/badge/DOI/TOBEOBTAINED.svg)](https://doi.org/TOBEOBTAINED) [![Schemas](https://img.shields.io/badge/Generated%20Schema%20Files-JSON%2C%20SHACL%2C%20OWL-32CD32)](https://ce-rise-models.codeberg.page/usage-and-maintenance/)
 
-This repository provides the **official template** for creating CE-RISE data models.  
-It defines the standard structure, tooling, and workflow used across all model projects.
+Repository for the data model capturing how a product is operated and maintained, including usage records, maintenance actions, service histories, and legally required or product-specific instructions for use and upkeep.
 
 
 ---
@@ -122,7 +121,4 @@ Attribution: CE-RISE project (Grant Agreement No. 101092281) and the individual 
   <img src="https://nilu.no/wp-content/uploads/2023/12/nilu-logo-seagreen-rgb-300px.png" alt="NILU logo" width="40"/>
 </a>
 
-Developed by NILU (Riccardo Boero — ribo@nilu.no) within the CE-RISE project.  
-
-
-
+Developed by NILU (Riccardo Boero — ribo@nilu.no) within the CE-RISE project.
