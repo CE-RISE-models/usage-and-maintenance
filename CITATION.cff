@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 title: CE-RISE Usage and Maintenance
 message: >-
-  v0.0.1 - Initial sketch of project template.
+  v0.0.1 - Initial project setup and full data model draft.
 type: software
 doi: xxx_to_be_obtained_xxx
 authors:
@@ -17,7 +17,7 @@ identifiers:
 repository-code: 'https://codeberg.org/CE-RISE_models/usage-and-maintenance'
 url: 'https://ce-rise-models.codeberg.page/usage-and-maintenance/'
 abstract: >-
-  Repository for the data model capturing how a product is operated and maintained, including usage records, maintenance actions, service histories, and legally required or product-specific instructions for use and upkeep.
+  Repository for the CE-RISE Usage and Maintenance data model that captures the operational lifecycle of products through a mixed temporal approach: static reference information (instructions, schedules), accumulating state-based metrics (usage hours, performance), and discrete event-based records (maintenance, repairs). It enables comprehensive tracking of how products are used, maintained, and serviced throughout their operational life.
 keywords:
   - CE-RISE
   - Data Model

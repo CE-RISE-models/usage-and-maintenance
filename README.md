@@ -2,7 +2,7 @@
 
 [![DOI](https://zenodo.org/badge/DOI/TOBEOBTAINED.svg)](https://doi.org/TOBEOBTAINED) [![Schemas](https://img.shields.io/badge/Generated%20Schema%20Files-JSON%2C%20SHACL%2C%20OWL-32CD32)](https://ce-rise-models.codeberg.page/usage-and-maintenance/)
 
-Repository for the data model capturing how a product is operated and maintained, including usage records, maintenance actions, service histories, and legally required or product-specific instructions for use and upkeep.
+Repository for the CE-RISE Usage and Maintenance data model that captures the operational lifecycle of products through a mixed temporal approach: static reference information (instructions, schedules), accumulating state-based metrics (usage hours, performance), and discrete event-based records (maintenance, repairs). It enables comprehensive tracking of how products are used, maintained, and serviced throughout their operational life.
 
 
 ---
