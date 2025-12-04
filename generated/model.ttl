@@ -1,0 +1,1500 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema1: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix uam: <https://ce-rise-models.codeberg.page/usage-and-maintenance/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://ce-rise-models.codeberg.page/usage-and-maintenance/.owl.ttl> a owl:Ontology ;
+    rdfs:label "usage-and-maintenance" ;
+    dcterms:license "CC BY-NC 4.0" ;
+    dcterms:title "CE-RISE Usage and Maintenance Data Model" ;
+    pav:version "0.0.1" ;
+    skos:definition """Data model for capturing product operation, usage patterns, maintenance activities, and related instructions throughout the product lifecycle.
+""" .
+
+uam:UsageAndMaintenance a owl:Class ;
+    rdfs:label "UsageAndMaintenance" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:maintenance_instructions ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:maintenance_schedule ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom uam:UsageRelatedData ;
+            owl:onProperty uam:usage_related_data ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom uam:MaintenanceInstructions ;
+            owl:onProperty uam:maintenance_instructions ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:use_instructions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom uam:SparePartsInformation ;
+            owl:onProperty uam:spare_parts_information ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:maintenance_repair_related_data ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:service_provider_information ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:spare_parts_information ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom uam:MaintenanceRepairRelatedData ;
+            owl:onProperty uam:maintenance_repair_related_data ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:use_instructions ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:maintenance_schedule ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:maintenance_repair_related_data ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:usage_related_data ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom uam:MaintenanceSchedule ;
+            owl:onProperty uam:maintenance_schedule ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom uam:UseInstructions ;
+            owl:onProperty uam:use_instructions ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:usage_related_data ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:maintenance_instructions ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:service_provider_information ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:spare_parts_information ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom uam:ServiceProviderInformation ;
+            owl:onProperty uam:service_provider_information ] ;
+    skos:definition "Root class for usage and maintenance data model" ;
+    skos:inScheme uam: .
+
+uam:MaintenanceHistory a owl:Class ;
+    rdfs:label "MaintenanceHistory" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:maintenance_effectiveness ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:maintenance_cost ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:maintenance_duration ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:maintenance_cost ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:maintenance_effectiveness ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:maintenance_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:maintenance_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:parts_replaced ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:technician_id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:technician_id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:service_organization ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:maintenance_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:next_maintenance_due ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:maintenance_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:parts_replaced ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:maintenance_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:date ;
+            owl:onProperty uam:maintenance_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:date ;
+            owl:onProperty uam:next_maintenance_due ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:technician_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty uam:maintenance_duration ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:maintenance_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:service_organization ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:maintenance_duration ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty uam:maintenance_cost ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:maintenance_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:maintenance_effectiveness ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:service_organization ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:parts_replaced ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:maintenance_description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:next_maintenance_due ] ;
+    skos:definition "Record of completed maintenance activities (event-based)" ;
+    skos:exactMatch prov:Activity ;
+    skos:inScheme uam: .
+
+uam:MaintenanceInstructions a owl:Class ;
+    rdfs:label "MaintenanceInstructions" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:inspection_checklists ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:maintenance_safety_requirements ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:inspection_checklists ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:storage_instructions ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:special_tools_required ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:routine_maintenance_procedures ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:routine_maintenance_procedures ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:calibration_procedures ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:cleaning_instructions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:decommissioning_procedures ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:calibration_procedures ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:lubrication_requirements ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:storage_instructions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:special_tools_required ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:maintenance_manual_url ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:lubrication_requirements ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:decommissioning_procedures ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:special_tools_required ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:decommissioning_procedures ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:maintenance_manual_url ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:storage_instructions ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:maintenance_safety_requirements ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:cleaning_instructions ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:lubrication_requirements ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:inspection_checklists ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:cleaning_instructions ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:routine_maintenance_procedures ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:maintenance_safety_requirements ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:maintenance_manual_url ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:calibration_procedures ] ;
+    skos:definition "Instructions for product maintenance and servicing" ;
+    skos:inScheme uam: .
+
+uam:MaintenanceRepairRelatedData a owl:Class ;
+    rdfs:label "MaintenanceRepairRelatedData" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:maintenance_history ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom uam:MaintenanceHistory ;
+            owl:onProperty uam:maintenance_history ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:repair_history ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom uam:RepairHistory ;
+            owl:onProperty uam:repair_history ] ;
+    skos:definition "Container for maintenance and repair information" ;
+    skos:inScheme uam: .
+
+uam:MaintenanceSchedule a owl:Class ;
+    rdfs:label "MaintenanceSchedule" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:component_replacement_schedule ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:mandatory_inspections ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:calibration_schedule ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:mandatory_inspections ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:preventive_maintenance_intervals ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:predictive_maintenance_triggers ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:mandatory_inspections ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:calibration_schedule ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:predictive_maintenance_triggers ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:component_replacement_schedule ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:preventive_maintenance_intervals ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:predictive_maintenance_triggers ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:component_replacement_schedule ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:preventive_maintenance_intervals ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:calibration_schedule ] ;
+    skos:definition "Planned maintenance activities and intervals" ;
+    skos:exactMatch schema1:MaintenanceSchedule ;
+    skos:inScheme uam: .
+
+uam:OperationalConditions a owl:Class ;
+    rdfs:label "OperationalConditions" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:vibration_exposure ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:vibration_exposure ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:vibration_exposure ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:operating_location_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:typical_humidity_range ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:operating_location_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:environmental_conditions ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:typical_humidity_range ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:typical_operating_temperature ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:typical_operating_temperature ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:typical_operating_temperature ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:typical_humidity_range ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:environmental_conditions ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:environmental_conditions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:operating_location_type ] ;
+    skos:definition "Environmental and operational parameters during product use" ;
+    skos:exactMatch sosa:ObservationCollection ;
+    skos:inScheme uam: .
+
+uam:PerformanceTracking a owl:Class ;
+    rdfs:label "PerformanceTracking" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:availability_percentage ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:mean_time_between_failures ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:performance_degradation_rate ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:availability_percentage ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty uam:availability_percentage ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:reliability_score ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:current_efficiency ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty uam:mean_time_between_failures ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:performance_degradation_rate ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:current_efficiency ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty uam:performance_degradation_rate ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:mean_time_between_failures ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:reliability_score ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty uam:reliability_score ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty uam:current_efficiency ] ;
+    skos:definition "Product performance metrics over time" ;
+    skos:inScheme uam: .
+
+uam:RepairHistory a owl:Class ;
+    rdfs:label "RepairHistory" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty uam:repair_cost ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:repair_actions_taken ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty uam:downtime_caused ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:failure_category ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty uam:warranty_coverage ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:components_replaced ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:downtime_caused ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:warranty_coverage ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:root_cause_analysis ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:repair_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:repair_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:failure_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:root_cause_analysis ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:repair_actions_taken ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:repair_effectiveness ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:components_replaced ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:repair_cost ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:warranty_coverage ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:downtime_caused ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:repair_cost ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:failure_category ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:repair_duration ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:repair_effectiveness ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:repair_effectiveness ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:date ;
+            owl:onProperty uam:repair_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:failure_category ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty uam:repair_duration ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:failure_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:repair_duration ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:root_cause_analysis ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:repair_actions_taken ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:failure_description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:components_replaced ] ;
+    skos:definition "Record of repairs performed on the product (event-based)" ;
+    skos:exactMatch prov:Activity ;
+    skos:inScheme uam: .
+
+uam:ServiceProviderInformation a owl:Class ;
+    rdfs:label "ServiceProviderInformation" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:authorized_service_centers ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:authorized_service_centers ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:service_contract_options ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:service_contract_options ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:authorized_service_centers ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:service_hotline ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty uam:remote_support_availability ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:warranty_service_terms ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:remote_support_availability ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:service_contract_options ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:warranty_service_terms ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:service_hotline ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:service_hotline ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:warranty_service_terms ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:remote_support_availability ] ;
+    skos:definition "Information about authorized service providers" ;
+    skos:exactMatch schema1:Service ;
+    skos:inScheme uam: .
+
+uam:SparePartsInformation a owl:Class ;
+    rdfs:label "SparePartsInformation" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:spare_parts_availability ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:spare_parts_availability ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:parts_suppliers ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:parts_suppliers ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:parts_ordering_information ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:critical_spare_parts_list ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:critical_spare_parts_list ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:parts_suppliers ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:parts_interchangeability ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:parts_interchangeability ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:parts_ordering_information ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:spare_parts_availability ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:parts_interchangeability ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:critical_spare_parts_list ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:parts_ordering_information ] ;
+    skos:definition "Information about spare parts and replacements" ;
+    skos:inScheme uam: .
+
+uam:UsageMetrics a owl:Class ;
+    rdfs:label "UsageMetrics" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:total_operating_hours ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:total_operating_hours ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:load_cycles ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty uam:energy_consumption ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty uam:average_daily_usage ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:usage_intensity ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:distance_traveled ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty uam:power_on_cycles ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:usage_intensity ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:energy_consumption ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty uam:load_cycles ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty uam:distance_traveled ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:energy_consumption ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:average_daily_usage ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:load_cycles ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:distance_traveled ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:average_daily_usage ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:power_on_cycles ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty uam:total_operating_hours ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:usage_intensity ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:power_on_cycles ] ;
+    skos:definition "Quantitative measurements of product usage" ;
+    skos:inScheme uam: .
+
+uam:UsagePatterns a owl:Class ;
+    rdfs:label "UsagePatterns" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:primary_use_case ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:secondary_use_cases ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:idle_time_percentage ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:peak_usage_periods ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:secondary_use_cases ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:idle_time_percentage ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:peak_usage_periods ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:seasonal_variation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:seasonal_variation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:primary_use_case ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:seasonal_variation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty uam:idle_time_percentage ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:primary_use_case ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:peak_usage_periods ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:secondary_use_cases ] ;
+    skos:definition "Patterns and behaviors in product usage" ;
+    skos:inScheme uam: .
+
+uam:UsageRelatedData a owl:Class ;
+    rdfs:label "UsageRelatedData" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:usage_metrics ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:usage_metrics ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:performance_tracking ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:performance_tracking ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom uam:UsagePatterns ;
+            owl:onProperty uam:usage_patterns ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:usage_patterns ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:operational_conditions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom uam:PerformanceTracking ;
+            owl:onProperty uam:performance_tracking ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:operational_conditions ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:usage_patterns ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom uam:OperationalConditions ;
+            owl:onProperty uam:operational_conditions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom uam:UsageMetrics ;
+            owl:onProperty uam:usage_metrics ] ;
+    skos:definition "Container for product usage data and metrics" ;
+    skos:inScheme uam: .
+
+uam:UseInstructions a owl:Class ;
+    rdfs:label "UseInstructions" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:troubleshooting_guide ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:optimal_operating_parameters ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:troubleshooting_guide ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:prohibited_uses ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:operating_manual_url ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:training_requirements ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:training_requirements ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:prohibited_uses ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:prohibited_uses ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:operating_manual_url ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:training_requirements ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:operating_manual_url ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:safety_precautions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:troubleshooting_guide ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:safety_precautions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:optimal_operating_parameters ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:quick_start_guide ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty uam:quick_start_guide ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty uam:quick_start_guide ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:optimal_operating_parameters ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty uam:safety_precautions ] ;
+    skos:definition "Instructions for proper product use and operation" ;
+    skos:exactMatch schema1:HowTo ;
+    skos:inScheme uam: .
+
+uam:maintenance_history a owl:ObjectProperty ;
+    rdfs:label "maintenance_history" ;
+    skos:definition "Record of completed maintenance activities" ;
+    skos:inScheme uam: ;
+    uam:sql_identifier "uam_maintenance_history" .
+
+uam:repair_history a owl:ObjectProperty ;
+    rdfs:label "repair_history" ;
+    skos:definition "Record of repairs performed on the product" ;
+    skos:inScheme uam: ;
+    uam:sql_identifier "uam_repair_history" .
+
+uam:authorized_service_centers a owl:DatatypeProperty ;
+    rdfs:label "authorized_service_centers" ;
+    skos:definition "List of authorized service centers" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:authorized_service_centers_value" ;
+    uam:sql_identifier "uam_service_centers" .
+
+uam:availability_percentage a owl:DatatypeProperty ;
+    rdfs:label "availability_percentage" ;
+    qudt:unit "qudt:Percent" ;
+    skos:definition "Percentage of time product is available for use" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:availability_percentage_value" ;
+    uam:sql_identifier "uam_perf_availability" .
+
+uam:average_daily_usage a owl:DatatypeProperty ;
+    rdfs:label "average_daily_usage" ;
+    qudt:unit "qudt:Hour" ;
+    skos:definition "Average hours of usage per day" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:average_daily_usage_value" ;
+    uam:sql_identifier "uam_usage_avg_daily" .
+
+uam:calibration_procedures a owl:DatatypeProperty ;
+    rdfs:label "calibration_procedures" ;
+    skos:definition "Procedures for calibration" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:calibration_procedures_value" ;
+    uam:sql_identifier "uam_maint_inst_calibration_proc" .
+
+uam:calibration_schedule a owl:DatatypeProperty ;
+    rdfs:label "calibration_schedule" ;
+    skos:definition "Schedule for calibration activities" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:calibration_schedule_value" ;
+    uam:sql_identifier "uam_sched_calibration" .
+
+uam:cleaning_instructions a owl:DatatypeProperty ;
+    rdfs:label "cleaning_instructions" ;
+    skos:definition "Instructions for cleaning the product" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:cleaning_instructions_value" ;
+    uam:sql_identifier "uam_maint_inst_cleaning" .
+
+uam:component_replacement_schedule a owl:DatatypeProperty ;
+    rdfs:label "component_replacement_schedule" ;
+    skos:definition "Schedule for component replacements" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:component_replacement_schedule_value" ;
+    uam:sql_identifier "uam_sched_component_replacement" .
+
+uam:components_replaced a owl:DatatypeProperty ;
+    rdfs:label "components_replaced" ;
+    skos:definition "List of components replaced during repair" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:components_replaced_value" ;
+    uam:sql_identifier "uam_repair_hist_components" .
+
+uam:critical_spare_parts_list a owl:DatatypeProperty ;
+    rdfs:label "critical_spare_parts_list" ;
+    skos:definition "List of critical spare parts required" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:critical_spare_parts_list_value" ;
+    uam:sql_identifier "uam_spare_critical_list" .
+
+uam:current_efficiency a owl:DatatypeProperty ;
+    rdfs:label "current_efficiency" ;
+    qudt:unit "qudt:Percent" ;
+    skos:definition "Current operational efficiency compared to baseline" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:current_efficiency_value" ;
+    uam:sql_identifier "uam_perf_current_efficiency" .
+
+uam:decommissioning_procedures a owl:DatatypeProperty ;
+    rdfs:label "decommissioning_procedures" ;
+    skos:definition "Procedures for safe decommissioning" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:decommissioning_procedures_value" ;
+    uam:sql_identifier "uam_maint_inst_decommissioning" .
+
+uam:distance_traveled a owl:DatatypeProperty ;
+    rdfs:label "distance_traveled" ;
+    qudt:unit "qudt:Kilometer" ;
+    skos:definition "Total distance traveled (for mobile products)" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:distance_traveled_value" ;
+    uam:sql_identifier "uam_usage_distance" .
+
+uam:downtime_caused a owl:DatatypeProperty ;
+    rdfs:label "downtime_caused" ;
+    qudt:unit "qudt:Hour" ;
+    skos:definition "Product downtime caused by the failure" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:downtime_caused_value" ;
+    uam:sql_identifier "uam_repair_hist_downtime" .
+
+uam:energy_consumption a owl:DatatypeProperty ;
+    rdfs:label "energy_consumption" ;
+    qudt:unit "qudt:KilowattHour" ;
+    skos:definition "Total energy consumed during operation" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:energy_consumption_value" ;
+    uam:sql_identifier "uam_usage_energy_consumption" .
+
+uam:environmental_conditions a owl:DatatypeProperty ;
+    rdfs:label "environmental_conditions" ;
+    skos:definition "Description of typical environmental conditions" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:environmental_conditions_value" ;
+    uam:sql_identifier "uam_op_environment" .
+
+uam:failure_category a owl:DatatypeProperty ;
+    rdfs:label "failure_category" ;
+    skos:definition "Category of failure (mechanical, electrical, software, wear, misuse)" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:failure_category_value" ;
+    uam:sql_identifier "uam_repair_hist_failure_category" .
+
+uam:failure_description a owl:DatatypeProperty ;
+    rdfs:label "failure_description" ;
+    skos:definition "Description of the failure or problem" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:failure_description_value" ;
+    uam:sql_identifier "uam_repair_hist_failure_desc" .
+
+uam:idle_time_percentage a owl:DatatypeProperty ;
+    rdfs:label "idle_time_percentage" ;
+    qudt:unit "qudt:Percent" ;
+    skos:definition "Percentage of time product is idle" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:idle_time_percentage_value" ;
+    uam:sql_identifier "uam_pattern_idle_percent" .
+
+uam:inspection_checklists a owl:DatatypeProperty ;
+    rdfs:label "inspection_checklists" ;
+    skos:definition "Checklists for maintenance inspections" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:inspection_checklists_value" ;
+    uam:sql_identifier "uam_maint_inst_inspection_lists" .
+
+uam:load_cycles a owl:DatatypeProperty ;
+    rdfs:label "load_cycles" ;
+    skos:definition "Number of load/unload cycles (for applicable products)" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:load_cycles_value" ;
+    uam:sql_identifier "uam_usage_load_cycles" .
+
+uam:lubrication_requirements a owl:DatatypeProperty ;
+    rdfs:label "lubrication_requirements" ;
+    skos:definition "Lubrication points and requirements" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:lubrication_requirements_value" ;
+    uam:sql_identifier "uam_maint_inst_lubrication" .
+
+uam:maintenance_cost a owl:DatatypeProperty ;
+    rdfs:label "maintenance_cost" ;
+    skos:definition "Cost of the maintenance activity" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:maintenance_cost_value" ;
+    uam:sql_identifier "uam_maint_hist_cost" .
+
+uam:maintenance_date a owl:DatatypeProperty ;
+    rdfs:label "maintenance_date" ;
+    skos:definition "Date when maintenance was performed" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:maintenance_date_value" ;
+    uam:sql_identifier "uam_maint_hist_date" .
+
+uam:maintenance_description a owl:DatatypeProperty ;
+    rdfs:label "maintenance_description" ;
+    skos:definition "Description of maintenance activities performed" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:maintenance_description_value" ;
+    uam:sql_identifier "uam_maint_hist_description" .
+
+uam:maintenance_duration a owl:DatatypeProperty ;
+    rdfs:label "maintenance_duration" ;
+    qudt:unit "qudt:Hour" ;
+    skos:definition "Time taken to complete the maintenance" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:maintenance_duration_value" ;
+    uam:sql_identifier "uam_maint_hist_duration" .
+
+uam:maintenance_effectiveness a owl:DatatypeProperty ;
+    rdfs:label "maintenance_effectiveness" ;
+    skos:definition "Assessment of maintenance effectiveness" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:maintenance_effectiveness_value" ;
+    uam:sql_identifier "uam_maint_hist_effectiveness" .
+
+uam:maintenance_instructions a owl:ObjectProperty ;
+    rdfs:label "maintenance_instructions" ;
+    skos:definition "Instructions for product maintenance and servicing" ;
+    skos:inScheme uam: ;
+    uam:sql_identifier "uam_maintenance_instructions" .
+
+uam:maintenance_manual_url a owl:DatatypeProperty ;
+    rdfs:label "maintenance_manual_url" ;
+    skos:definition "URL to the maintenance manual" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:maintenance_manual_url_value" ;
+    uam:sql_identifier "uam_maint_inst_manual_url" .
+
+uam:maintenance_repair_related_data a owl:ObjectProperty ;
+    rdfs:label "maintenance_repair_related_data" ;
+    skos:definition "Data about maintenance activities and repair history" ;
+    skos:inScheme uam: ;
+    uam:sql_identifier "uam_maintenance_repair_data" .
+
+uam:maintenance_safety_requirements a owl:DatatypeProperty ;
+    rdfs:label "maintenance_safety_requirements" ;
+    skos:definition "Safety requirements for maintenance activities" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:maintenance_safety_requirements_value" ;
+    uam:sql_identifier "uam_maint_inst_safety_req" .
+
+uam:maintenance_schedule a owl:ObjectProperty ;
+    rdfs:label "maintenance_schedule" ;
+    skos:definition "Planned maintenance activities and intervals" ;
+    skos:inScheme uam: ;
+    uam:sql_identifier "uam_maintenance_schedule" .
+
+uam:maintenance_type a owl:DatatypeProperty ;
+    rdfs:label "maintenance_type" ;
+    skos:definition "Type of maintenance performed (preventive, predictive, corrective, inspection, calibration)" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:maintenance_type_value" ;
+    uam:sql_identifier "uam_maint_hist_type" .
+
+uam:mandatory_inspections a owl:DatatypeProperty ;
+    rdfs:label "mandatory_inspections" ;
+    skos:definition "Schedule for mandatory inspections" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:mandatory_inspections_value" ;
+    uam:sql_identifier "uam_sched_mandatory_inspections" .
+
+uam:mean_time_between_failures a owl:DatatypeProperty ;
+    rdfs:label "mean_time_between_failures" ;
+    qudt:unit "qudt:Hour" ;
+    skos:definition "Average time between failures (MTBF)" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:mean_time_between_failures_value" ;
+    uam:sql_identifier "uam_perf_mtbf" .
+
+uam:next_maintenance_due a owl:DatatypeProperty ;
+    rdfs:label "next_maintenance_due" ;
+    skos:definition "Date when next maintenance is due" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:next_maintenance_due_value" ;
+    uam:sql_identifier "uam_maint_hist_next_due" .
+
+uam:operating_location_type a owl:DatatypeProperty ;
+    rdfs:label "operating_location_type" ;
+    skos:definition "Type of location where product is typically operated (indoor, outdoor, mixed, industrial, residential, commercial)" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:operating_location_type_value" ;
+    uam:sql_identifier "uam_op_location_type" .
+
+uam:operating_manual_url a owl:DatatypeProperty ;
+    rdfs:label "operating_manual_url" ;
+    skos:definition "URL to the operating manual" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:operating_manual_url_value" ;
+    uam:sql_identifier "uam_inst_operating_manual_url" .
+
+uam:operational_conditions a owl:ObjectProperty ;
+    rdfs:label "operational_conditions" ;
+    skos:definition "Environmental and operational parameters during use" ;
+    skos:inScheme uam: ;
+    uam:sql_identifier "uam_operational_conditions" .
+
+uam:optimal_operating_parameters a owl:DatatypeProperty ;
+    rdfs:label "optimal_operating_parameters" ;
+    skos:definition "Recommended operating parameters for optimal performance" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:optimal_operating_parameters_value" ;
+    uam:sql_identifier "uam_inst_optimal_params" .
+
+uam:parts_interchangeability a owl:DatatypeProperty ;
+    rdfs:label "parts_interchangeability" ;
+    skos:definition "Information about interchangeable parts" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:parts_interchangeability_value" ;
+    uam:sql_identifier "uam_spare_interchangeable" .
+
+uam:parts_ordering_information a owl:DatatypeProperty ;
+    rdfs:label "parts_ordering_information" ;
+    skos:definition "Information on how to order spare parts" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:parts_ordering_information_value" ;
+    uam:sql_identifier "uam_spare_ordering_info" .
+
+uam:parts_replaced a owl:DatatypeProperty ;
+    rdfs:label "parts_replaced" ;
+    skos:definition "List of parts replaced during maintenance" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:parts_replaced_value" ;
+    uam:sql_identifier "uam_maint_hist_parts_replaced" .
+
+uam:parts_suppliers a owl:DatatypeProperty ;
+    rdfs:label "parts_suppliers" ;
+    skos:definition "List of authorized parts suppliers" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:parts_suppliers_value" ;
+    uam:sql_identifier "uam_spare_suppliers" .
+
+uam:peak_usage_periods a owl:DatatypeProperty ;
+    rdfs:label "peak_usage_periods" ;
+    skos:definition "Time periods of peak usage" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:peak_usage_periods_value" ;
+    uam:sql_identifier "uam_pattern_peak_periods" .
+
+uam:performance_degradation_rate a owl:DatatypeProperty ;
+    rdfs:label "performance_degradation_rate" ;
+    qudt:unit "qudt:PercentPerYear" ;
+    skos:definition "Rate of performance degradation over time" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:performance_degradation_rate_value" ;
+    uam:sql_identifier "uam_perf_degradation_rate" .
+
+uam:performance_tracking a owl:ObjectProperty ;
+    rdfs:label "performance_tracking" ;
+    skos:definition "Product performance metrics over time" ;
+    skos:inScheme uam: ;
+    uam:sql_identifier "uam_performance_tracking" .
+
+uam:power_on_cycles a owl:DatatypeProperty ;
+    rdfs:label "power_on_cycles" ;
+    skos:definition "Number of times the product has been powered on" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:power_on_cycles_value" ;
+    uam:sql_identifier "uam_usage_power_cycles" .
+
+uam:predictive_maintenance_triggers a owl:DatatypeProperty ;
+    rdfs:label "predictive_maintenance_triggers" ;
+    skos:definition "Conditions that trigger predictive maintenance" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:predictive_maintenance_triggers_value" ;
+    uam:sql_identifier "uam_sched_predictive_triggers" .
+
+uam:preventive_maintenance_intervals a owl:DatatypeProperty ;
+    rdfs:label "preventive_maintenance_intervals" ;
+    skos:definition "Schedule for preventive maintenance activities" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:preventive_maintenance_intervals_value" ;
+    uam:sql_identifier "uam_sched_preventive_intervals" .
+
+uam:primary_use_case a owl:DatatypeProperty ;
+    rdfs:label "primary_use_case" ;
+    skos:definition "Primary application or use case for the product" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:primary_use_case_value" ;
+    uam:sql_identifier "uam_pattern_primary_use" .
+
+uam:prohibited_uses a owl:DatatypeProperty ;
+    rdfs:label "prohibited_uses" ;
+    skos:definition "Uses that are prohibited or not recommended" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:prohibited_uses_value" ;
+    uam:sql_identifier "uam_inst_prohibited_uses" .
+
+uam:quick_start_guide a owl:DatatypeProperty ;
+    rdfs:label "quick_start_guide" ;
+    skos:definition "Quick start instructions for basic operation" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:quick_start_guide_value" ;
+    uam:sql_identifier "uam_inst_quick_start" .
+
+uam:reliability_score a owl:DatatypeProperty ;
+    rdfs:label "reliability_score" ;
+    skos:definition "Current reliability score based on failure rates" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:reliability_score_value" ;
+    uam:sql_identifier "uam_perf_reliability_score" .
+
+uam:remote_support_availability a owl:DatatypeProperty ;
+    rdfs:label "remote_support_availability" ;
+    skos:definition "Whether remote support is available" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:remote_support_availability_value" ;
+    uam:sql_identifier "uam_service_remote_support" .
+
+uam:repair_actions_taken a owl:DatatypeProperty ;
+    rdfs:label "repair_actions_taken" ;
+    skos:definition "Description of repair actions performed" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:repair_actions_taken_value" ;
+    uam:sql_identifier "uam_repair_hist_actions" .
+
+uam:repair_cost a owl:DatatypeProperty ;
+    rdfs:label "repair_cost" ;
+    skos:definition "Cost of the repair" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:repair_cost_value" ;
+    uam:sql_identifier "uam_repair_hist_cost" .
+
+uam:repair_date a owl:DatatypeProperty ;
+    rdfs:label "repair_date" ;
+    skos:definition "Date when repair was performed" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:repair_date_value" ;
+    uam:sql_identifier "uam_repair_hist_date" .
+
+uam:repair_duration a owl:DatatypeProperty ;
+    rdfs:label "repair_duration" ;
+    qudt:unit "qudt:Hour" ;
+    skos:definition "Time taken to complete the repair" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:repair_duration_value" ;
+    uam:sql_identifier "uam_repair_hist_duration" .
+
+uam:repair_effectiveness a owl:DatatypeProperty ;
+    rdfs:label "repair_effectiveness" ;
+    skos:definition "Assessment of repair effectiveness" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:repair_effectiveness_value" ;
+    uam:sql_identifier "uam_repair_hist_effectiveness" .
+
+uam:root_cause_analysis a owl:DatatypeProperty ;
+    rdfs:label "root_cause_analysis" ;
+    skos:definition "Analysis of the root cause of failure" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:root_cause_analysis_value" ;
+    uam:sql_identifier "uam_repair_hist_root_cause" .
+
+uam:routine_maintenance_procedures a owl:DatatypeProperty ;
+    rdfs:label "routine_maintenance_procedures" ;
+    skos:definition "Procedures for routine maintenance tasks" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:routine_maintenance_procedures_value" ;
+    uam:sql_identifier "uam_maint_inst_routine_proc" .
+
+uam:safety_precautions a owl:DatatypeProperty ;
+    rdfs:label "safety_precautions" ;
+    skos:definition "Safety precautions for product use" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:safety_precautions_value" ;
+    uam:sql_identifier "uam_inst_safety_precautions" .
+
+uam:seasonal_variation a owl:DatatypeProperty ;
+    rdfs:label "seasonal_variation" ;
+    skos:definition "Description of seasonal usage variations" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:seasonal_variation_value" ;
+    uam:sql_identifier "uam_pattern_seasonal" .
+
+uam:secondary_use_cases a owl:DatatypeProperty ;
+    rdfs:label "secondary_use_cases" ;
+    skos:definition "Additional or alternative use cases" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:secondary_use_cases_value" ;
+    uam:sql_identifier "uam_pattern_secondary_uses" .
+
+uam:service_contract_options a owl:DatatypeProperty ;
+    rdfs:label "service_contract_options" ;
+    skos:definition "Available service contract options" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:service_contract_options_value" ;
+    uam:sql_identifier "uam_service_contracts" .
+
+uam:service_hotline a owl:DatatypeProperty ;
+    rdfs:label "service_hotline" ;
+    skos:definition "Contact number for service support" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:service_hotline_value" ;
+    uam:sql_identifier "uam_service_hotline" .
+
+uam:service_organization a owl:DatatypeProperty ;
+    rdfs:label "service_organization" ;
+    skos:definition "Organization that performed the maintenance" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:service_organization_value" ;
+    uam:sql_identifier "uam_maint_hist_service_org" .
+
+uam:service_provider_information a owl:ObjectProperty ;
+    rdfs:label "service_provider_information" ;
+    skos:definition "Information about authorized service providers" ;
+    skos:inScheme uam: ;
+    uam:sql_identifier "uam_service_provider_info" .
+
+uam:spare_parts_availability a owl:DatatypeProperty ;
+    rdfs:label "spare_parts_availability" ;
+    skos:definition "Information about spare parts availability" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:spare_parts_availability_value" ;
+    uam:sql_identifier "uam_spare_availability" .
+
+uam:spare_parts_information a owl:ObjectProperty ;
+    rdfs:label "spare_parts_information" ;
+    skos:definition "Information about spare parts and replacements" ;
+    skos:inScheme uam: ;
+    uam:sql_identifier "uam_spare_parts_info" .
+
+uam:special_tools_required a owl:DatatypeProperty ;
+    rdfs:label "special_tools_required" ;
+    skos:definition "Special tools required for maintenance" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:special_tools_required_value" ;
+    uam:sql_identifier "uam_maint_inst_special_tools" .
+
+uam:storage_instructions a owl:DatatypeProperty ;
+    rdfs:label "storage_instructions" ;
+    skos:definition "Instructions for proper storage when not in use" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:storage_instructions_value" ;
+    uam:sql_identifier "uam_maint_inst_storage" .
+
+uam:technician_id a owl:DatatypeProperty ;
+    rdfs:label "technician_id" ;
+    skos:definition "Identifier of technician who performed maintenance" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:technician_id_value" ;
+    uam:sql_identifier "uam_maint_hist_technician_id" .
+
+uam:total_operating_hours a owl:DatatypeProperty ;
+    rdfs:label "total_operating_hours" ;
+    qudt:unit "qudt:Hour" ;
+    skos:definition "Total hours the product has been in operation" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:total_operating_hours_value" ;
+    uam:sql_identifier "uam_usage_total_hours" .
+
+uam:training_requirements a owl:DatatypeProperty ;
+    rdfs:label "training_requirements" ;
+    skos:definition "Training required for safe operation" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:training_requirements_value" ;
+    uam:sql_identifier "uam_inst_training_req" .
+
+uam:troubleshooting_guide a owl:DatatypeProperty ;
+    rdfs:label "troubleshooting_guide" ;
+    skos:definition "Common issues and troubleshooting steps" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:troubleshooting_guide_value" ;
+    uam:sql_identifier "uam_inst_troubleshooting" .
+
+uam:typical_humidity_range a owl:DatatypeProperty ;
+    rdfs:label "typical_humidity_range" ;
+    qudt:unit "qudt:Percent" ;
+    skos:definition "Typical humidity range during operation" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:typical_humidity_range_value" ;
+    uam:sql_identifier "uam_op_humidity_range" .
+
+uam:typical_operating_temperature a owl:DatatypeProperty ;
+    rdfs:label "typical_operating_temperature" ;
+    qudt:unit "qudt:DegreeCelsius" ;
+    skos:definition "Typical temperature range during operation" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:typical_operating_temperature_value" ;
+    uam:sql_identifier "uam_op_temp_range" .
+
+uam:usage_intensity a owl:DatatypeProperty ;
+    rdfs:label "usage_intensity" ;
+    skos:definition "Level of usage intensity (light, moderate, heavy, continuous)" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:usage_intensity_value" ;
+    uam:sql_identifier "uam_usage_intensity" .
+
+uam:usage_metrics a owl:ObjectProperty ;
+    rdfs:label "usage_metrics" ;
+    skos:definition "Quantitative measurements of product usage" ;
+    skos:inScheme uam: ;
+    uam:sql_identifier "uam_usage_metrics" .
+
+uam:usage_patterns a owl:ObjectProperty ;
+    rdfs:label "usage_patterns" ;
+    skos:definition "Patterns and behaviors in product usage" ;
+    skos:inScheme uam: ;
+    uam:sql_identifier "uam_usage_patterns" .
+
+uam:usage_related_data a owl:ObjectProperty ;
+    rdfs:label "usage_related_data" ;
+    skos:definition "Data about product usage patterns and metrics" ;
+    skos:inScheme uam: ;
+    uam:sql_identifier "uam_usage_related_data" .
+
+uam:use_instructions a owl:ObjectProperty ;
+    rdfs:label "use_instructions" ;
+    skos:definition "Instructions for proper product use and operation" ;
+    skos:inScheme uam: ;
+    uam:sql_identifier "uam_use_instructions" .
+
+uam:vibration_exposure a owl:DatatypeProperty ;
+    rdfs:label "vibration_exposure" ;
+    skos:definition "Level of vibration exposure during operation" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:vibration_exposure_value" ;
+    uam:sql_identifier "uam_op_vibration" .
+
+uam:warranty_coverage a owl:DatatypeProperty ;
+    rdfs:label "warranty_coverage" ;
+    skos:definition "Whether repair was covered under warranty" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:warranty_coverage_value" ;
+    uam:sql_identifier "uam_repair_hist_warranty" .
+
+uam:warranty_service_terms a owl:DatatypeProperty ;
+    rdfs:label "warranty_service_terms" ;
+    skos:definition "Terms and conditions for warranty service" ;
+    skos:inScheme uam: ;
+    uam:owl.filler "uam:warranty_service_terms_value" ;
+    uam:sql_identifier "uam_service_warranty_terms" .
+
+
