@@ -196,7 +196,7 @@ This identifier system enables seamless integration with databases and ensures c
 Release artifacts for each version (`schema.json`, `shacl.ttl`, `model.owl`)  
 are served directly from this URL:
 ```
-https://ce-rise-models.codeberg.page/<repo-name>/
+https://ce-rise-models.codeberg.page/usage-and-maintenance/
 ```
 
 
@@ -207,7 +207,7 @@ https://ce-rise-models.codeberg.page/<repo-name>/
 If you want to view the files published for version `v1.2.0`, open:
 
 ```
-https://codeberg.org/CE-RISE-models/<repo-name>/src/tag/pages-v1.2.0/generated/
+https://codeberg.org/CE-RISE-models/usage-and-maintenance/src/tag/pages-v1.2.0/generated/
 ```
 
 Files available in that directory typically include:
