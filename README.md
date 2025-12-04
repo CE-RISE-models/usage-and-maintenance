@@ -126,35 +126,25 @@ This identifier system enables seamless integration with databases and ensures c
 
 | Step | Component | Sub-Components | Criticalities Identified | Solutions Planned | Status | Missing/TODO |
 |------|-----------|---------------|-------------------------|-------------------|--------|--------------|
-| **1** | **Reference Information<br>(Static)** | • UseInstructions<br>• MaintenanceInstructions<br>• MaintenanceSchedule<br>• SparePartsInfo<br>• ServiceProviderInfo | • Separation from regulatory requirements<br>• Multi-language support needs<br>• Version control for updates<br>• Preventive vs predictive scheduling<br>• Parts availability tracking<br>• Service provider network | • Separate use and maintenance instructions<br>• Plan URL-based document references<br>• Design flexible scheduling framework<br>• Include parts catalog structure<br>• Add service center listings | **PLANNED** | • Interactive instructions<br>• AR/VR guidance<br>• Real-time parts availability<br>• Automated scheduling<br>• 3D printing specs |
-| **2** | **Usage Data Collection<br>(State-Based)** | • UsageMetrics<br>• OperationalConditions<br>• UsagePatterns<br>• PerformanceTracking | • Distinguish cumulative vs. instantaneous metrics<br>• Usage patterns vary by product type<br>• Performance degradation tracking<br>• Integration with IoT data sources<br>• Standardization of usage intensity levels | • Plan state-based cumulative structure<br>• Design flexible pattern categories<br>• Include performance baselines<br>• Define intensity classifications<br>• Add environment tracking | **PLANNED** | • IoT data ingestion<br>• Usage anomaly detection<br>• Multi-user tracking<br>• Energy efficiency calcs<br>• Predictive analytics |
-| **3** | **Maintenance/Repair Events<br>(Event-Based)** | • MaintenanceHistory<br>• RepairHistory | • Event-based timestamp structure<br>• Link to service providers<br>• Parts traceability<br>• Cost tracking for TCO<br>• Root cause analysis<br>• Failure pattern recognition | • Design event-based structure<br>• Include technician IDs<br>• Add parts replacement tracking<br>• Plan failure categorization<br>• Include effectiveness metrics | **PLANNED** | • Diagnostic integration<br>• Warranty validation<br>• Failure prediction<br>• Component reliability<br>• Knowledge base |
+| **1** | **Reference Information<br>(Static)** | • UseInstructions<br>• MaintenanceInstructions<br>• MaintenanceSchedule<br>• SparePartsInfo<br>• ServiceProviderInfo | • Separation from regulatory requirements<br>• Multi-language support needs<br>• Version control for updates<br>• Preventive vs predictive scheduling<br>• Parts availability tracking<br>• Service provider network | • Separate use and maintenance instructions<br>• Plan URL-based document references<br>• Design flexible scheduling framework<br>• Include parts catalog structure<br>• Add service center listings<br>• **Import Schema.org HowTo** for instructions<br>• **Import GoodRelations** for spare parts<br>• **Align with ISO 14224** for maintenance schedules | **PLANNED** | • Interactive instructions<br>• AR/VR guidance<br>• Real-time parts availability<br>• Automated scheduling<br>• 3D printing specs |
+| **2** | **Usage Data Collection<br>(State-Based)** | • UsageMetrics<br>• OperationalConditions<br>• UsagePatterns<br>• PerformanceTracking | • Distinguish cumulative vs. instantaneous metrics<br>• Usage patterns vary by product type<br>• Performance degradation tracking<br>• Integration with IoT data sources<br>• Standardization of usage intensity levels | • Plan state-based cumulative structure<br>• Design flexible pattern categories<br>• Include performance baselines<br>• Define intensity classifications<br>• Add environment tracking<br>• **Import QUDT** for units (hours, kWh, km)<br>• **Import SSN/SOSA** for sensor data<br>• **Align with MIMOSA OSA-CBM** for metrics | **PLANNED** | • IoT data ingestion<br>• Usage anomaly detection<br>• Multi-user tracking<br>• Energy efficiency calcs<br>• Predictive analytics |
+| **3** | **Maintenance/Repair Events<br>(Event-Based)** | • MaintenanceHistory<br>• RepairHistory | • Event-based timestamp structure<br>• Link to service providers<br>• Parts traceability<br>• Cost tracking for TCO<br>• Root cause analysis<br>• Failure pattern recognition | • Design event-based structure<br>• Include technician IDs<br>• Add parts replacement tracking<br>• Plan failure categorization<br>• Include effectiveness metrics<br>• **Import Time Ontology** for timestamps<br>• **Import PROV-O** for event lineage<br>• **Align with IEC 62264** for maintenance ops | **PLANNED** | • Diagnostic integration<br>• Warranty validation<br>• Failure prediction<br>• Component reliability<br>• Knowledge base |
+
 
 ### Integration Opportunities
 
-1. **With Layer 2 (Lifecycle Events)**:
-   - Maintenance events could trigger lifecycle event records
-   - Ownership changes might reset certain usage metrics
-
-2. **With Layer 2.a (Diagnostic Results)**:
-   - Diagnostic outputs inform maintenance scheduling
-   - Test results validate repair effectiveness
-
-3. **With Layer 4 (Impact Assessment)**:
-   - Usage data feeds into actual environmental impact calculations
-   - Maintenance frequency affects lifecycle assessments
-
-4. **With Layer 5 (Circularity & EoL)**:
-   - Usage intensity influences remaining useful life
-   - Maintenance history affects refurbishment potential
-
-5. **With Layer 6 (Compliance)**:
-   - Maintenance records support warranty claims
-   - Usage data validates compliance with operational limits
-
-
-
----
+- **QUDT** (Quantities, Units, Dimensions and Types) - For standardized units in usage metrics
+- **Schema.org** - HowTo, MaintenanceSchedule, Service, ServiceChannel classes
+- **SSN/SOSA** (Semantic Sensor Network) - For operational conditions and sensor-based metrics
+- **GoodRelations** - For spare parts catalog and service provider information
+- **ISO 14224** - Reliability and maintenance data standard for equipment
+- **MIMOSA OSA-CBM** - Open System Architecture for Condition-Based Maintenance
+- **IEC 62264 (ISA-95)** - Enterprise-control system integration including maintenance operations
+- **Time Ontology in OWL** - For temporal aspects of maintenance schedules and events
+- **PROV-O** - W3C provenance ontology for tracking maintenance event lineage
+- **DCMI (Dublin Core)** - Metadata terms for documentation and records
+- **FOAF** - For service provider and technician identification
+- **RDF Data Cube** - For structuring multi-dimensional usage metrics
 
 ## Publishing
 
