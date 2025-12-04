@@ -28,48 +28,93 @@ UsageAndMaintenance (root)
 │   ├── OperatingManualURL
 │   ├── QuickStartGuide
 │   ├── SafetyPrecautions
-│   └── OptimalOperatingParameters
+│   ├── OptimalOperatingParameters
+│   ├── ProhibitedUses
+│   ├── TrainingRequirements
+│   └── TroubleshootingGuide
 │
 ├── 2. MaintenanceInstructions (STATE-BASED)
 │   ├── MaintenanceManualURL
 │   ├── RoutineMaintenanceProcedures
 │   ├── CleaningInstructions
-│   └── CalibrationProcedures
+│   ├── LubricationRequirements
+│   ├── InspectionChecklists
+│   ├── CalibrationProcedures
+│   ├── StorageInstructions
+│   ├── DecommissioningProcedures
+│   ├── SpecialToolsRequired
+│   └── MaintenanceSafetyRequirements
 │
 ├── 3. UsageRelatedData (STATE-BASED)
 │   ├── UsageMetrics
 │   │   ├── TotalOperatingHours
 │   │   ├── PowerOnCycles
+│   │   ├── UsageIntensity
 │   │   ├── EnergyConsumption
-│   │   └── UsageIntensity
+│   │   ├── DistanceTraveled
+│   │   ├── LoadCycles
+│   │   └── AverageDailyUsage
 │   ├── OperationalConditions
-│   │   ├── TypicalOperatingEnvironment
-│   │   └── LocationType
+│   │   ├── TypicalOperatingTemperature
+│   │   ├── TypicalHumidityRange
+│   │   ├── VibrationExposure
+│   │   ├── EnvironmentalConditions
+│   │   └── OperatingLocationType
 │   ├── UsagePatterns
 │   │   ├── PrimaryUseCase
-│   │   └── IdleTimePercentage
+│   │   ├── SecondaryUseCases
+│   │   ├── PeakUsagePeriods
+│   │   ├── IdleTimePercentage
+│   │   └── SeasonalVariation
 │   └── PerformanceTracking
 │       ├── CurrentEfficiency
-│       └── ReliabilityScore
+│       ├── PerformanceDegradationRate
+│       ├── ReliabilityScore
+│       ├── MeanTimeBetweenFailures
+│       └── AvailabilityPercentage
 │
 └── 4. MaintenanceRepairRelatedData (MIXED)
     ├── MaintenanceSchedule (STATE)
     │   ├── PreventiveMaintenanceIntervals
-    │   └── PredictiveMaintenanceTriggers
-    ├── MaintenanceHistory (EVENT-BASED)
+    │   ├── PredictiveMaintenanceTriggers
+    │   ├── MandatoryInspections
+    │   ├── CalibrationSchedule
+    │   └── ComponentReplacementSchedule
+    ├── MaintenanceHistory (EVENT-BASED, MULTIVALUED)
     │   ├── MaintenanceDate
     │   ├── MaintenanceType
-    │   ├── ActionsPerformed
-    │   └── NextMaintenanceDue
-    ├── RepairHistory (EVENT-BASED)
+    │   ├── MaintenanceDescription
+    │   ├── TechnicianId
+    │   ├── ServiceOrganization
+    │   ├── PartsReplaced
+    │   ├── MaintenanceCost
+    │   ├── NextMaintenanceDue
+    │   ├── MaintenanceDuration
+    │   └── MaintenanceEffectiveness
+    ├── RepairHistory (EVENT-BASED, MULTIVALUED)
     │   ├── RepairDate
     │   ├── FailureDescription
-    │   ├── RepairActions
-    │   └── ComponentsReplaced
+    │   ├── RootCauseAnalysis
+    │   ├── RepairActionsTaken
+    │   ├── ComponentsReplaced
+    │   ├── RepairDuration
+    │   ├── RepairCost
+    │   ├── WarrantyCoverage
+    │   ├── RepairEffectiveness
+    │   ├── DowntimeCaused
+    │   └── FailureCategory
     ├── SparePartsInformation (STATE)
-    │   └── CriticalSpareParts
+    │   ├── CriticalSparePartsList
+    │   ├── SparePartsAvailability
+    │   ├── PartsInterchangeability
+    │   ├── PartsSuppliers
+    │   └── PartsOrderingInformation
     └── ServiceProviderInformation (STATE)
-        └── AuthorizedServiceCenters
+        ├── AuthorizedServiceCenters
+        ├── ServiceHotline
+        ├── RemoteSupportAvailability
+        ├── ServiceContractOptions
+        └── WarrantyServiceTerms
 ```
 
 ### Workflow Sequence
@@ -126,9 +171,9 @@ This identifier system enables seamless integration with databases and ensures c
 
 | Step | Component | Sub-Components | Criticalities Identified | Solutions Planned | Status | Missing/TODO |
 |------|-----------|---------------|-------------------------|-------------------|--------|--------------|
-| **1** | **Reference Information<br>(Static)** | • UseInstructions<br>• MaintenanceInstructions<br>• MaintenanceSchedule<br>• SparePartsInfo<br>• ServiceProviderInfo | • Separation from regulatory requirements<br>• Multi-language support needs<br>• Version control for updates<br>• Preventive vs predictive scheduling<br>• Parts availability tracking<br>• Service provider network | • Separate use and maintenance instructions<br>• Plan URL-based document references<br>• Design flexible scheduling framework<br>• Include parts catalog structure<br>• Add service center listings<br>• **Import Schema.org HowTo** for instructions<br>• **Import GoodRelations** for spare parts<br>• **Align with ISO 14224** for maintenance schedules | **PLANNED** | • Interactive instructions<br>• AR/VR guidance<br>• Real-time parts availability<br>• Automated scheduling<br>• 3D printing specs |
-| **2** | **Usage Data Collection<br>(State-Based)** | • UsageMetrics<br>• OperationalConditions<br>• UsagePatterns<br>• PerformanceTracking | • Distinguish cumulative vs. instantaneous metrics<br>• Usage patterns vary by product type<br>• Performance degradation tracking<br>• Integration with IoT data sources<br>• Standardization of usage intensity levels | • Plan state-based cumulative structure<br>• Design flexible pattern categories<br>• Include performance baselines<br>• Define intensity classifications<br>• Add environment tracking<br>• **Import QUDT** for units (hours, kWh, km)<br>• **Import SSN/SOSA** for sensor data<br>• **Align with MIMOSA OSA-CBM** for metrics | **PLANNED** | • IoT data ingestion<br>• Usage anomaly detection<br>• Multi-user tracking<br>• Energy efficiency calcs<br>• Predictive analytics |
-| **3** | **Maintenance/Repair Events<br>(Event-Based)** | • MaintenanceHistory<br>• RepairHistory | • Event-based timestamp structure<br>• Link to service providers<br>• Parts traceability<br>• Cost tracking for TCO<br>• Root cause analysis<br>• Failure pattern recognition | • Design event-based structure<br>• Include technician IDs<br>• Add parts replacement tracking<br>• Plan failure categorization<br>• Include effectiveness metrics<br>• **Import Time Ontology** for timestamps<br>• **Import PROV-O** for event lineage<br>• **Align with IEC 62264** for maintenance ops | **PLANNED** | • Diagnostic integration<br>• Warranty validation<br>• Failure prediction<br>• Component reliability<br>• Knowledge base |
+| **1** | **Reference Information<br>(Static)** | • UseInstructions<br>• MaintenanceInstructions<br>• MaintenanceSchedule<br>• SparePartsInfo<br>• ServiceProviderInfo | • Separation from regulatory requirements<br>• Multi-language support needs<br>• Version control for updates<br>• Preventive vs predictive scheduling<br>• Parts availability tracking<br>• Service provider network | • Separate use and maintenance instructions<br>• Plan URL-based document references<br>• Design flexible scheduling framework<br>• Include parts catalog structure<br>• Add service center listings<br>• **Import Schema.org HowTo** for instructions<br>• **Import GoodRelations** for spare parts<br>• **Align with ISO 14224** for maintenance schedules | **COMPLETED** | • Interactive instructions<br>• AR/VR guidance<br>• Real-time parts availability<br>• Automated scheduling<br>• 3D printing specs |
+| **2** | **Usage Data Collection<br>(State-Based)** | • UsageMetrics<br>• OperationalConditions<br>• UsagePatterns<br>• PerformanceTracking | • Distinguish cumulative vs. instantaneous metrics<br>• Usage patterns vary by product type<br>• Performance degradation tracking<br>• Integration with IoT data sources<br>• Standardization of usage intensity levels | • Plan state-based cumulative structure<br>• Design flexible pattern categories<br>• Include performance baselines<br>• Define intensity classifications<br>• Add environment tracking<br>• **Import QUDT** for units (hours, kWh, km)<br>• **Import SSN/SOSA** for sensor data<br>• **Align with MIMOSA OSA-CBM** for metrics | **COMPLETED** | • IoT data ingestion<br>• Usage anomaly detection<br>• Multi-user tracking<br>• Energy efficiency calcs<br>• Predictive analytics |
+| **3** | **Maintenance/Repair Events<br>(Event-Based)** | • MaintenanceHistory<br>• RepairHistory | • Event-based timestamp structure<br>• Link to service providers<br>• Parts traceability<br>• Cost tracking for TCO<br>• Root cause analysis<br>• Failure pattern recognition | • Design event-based structure<br>• Include technician IDs<br>• Add parts replacement tracking<br>• Plan failure categorization<br>• Include effectiveness metrics<br>• **Import Time Ontology** for timestamps<br>• **Import PROV-O** for event lineage<br>• **Align with IEC 62264** for maintenance ops | **COMPLETED** | • Diagnostic integration<br>• Warranty validation<br>• Failure prediction<br>• Component reliability<br>• Knowledge base |
 
 
 ### Integration Opportunities
