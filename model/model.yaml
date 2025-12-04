@@ -1,20 +1,289 @@
-id: https://ce-rise-models.codeberg.page/template-data-model/
-name: template_data_model
+id: https://ce-rise-models.codeberg.page/usage-and-maintenance/
+name: usage-and-maintenance
+title: CE-RISE Usage and Maintenance Data Model
+description: >
+    Data model for capturing product operation, usage patterns, maintenance activities,
+    and related instructions throughout the product lifecycle.
+license: CC BY-NC 4.0
+version: 0.1.0
+
 prefixes:
-  linkml: https://w3id.org/linkml/
-imports:
-  - linkml:types
+    linkml: https://w3id.org/linkml/
+    uam: https://ce-rise-models.codeberg.page/usage-and-maintenance/
+    xsd: http://www.w3.org/2001/XMLSchema#
+    rdfs: http://www.w3.org/2000/01/rdf-schema#
+    schema: http://schema.org/
+    qudt: http://qudt.org/schema/qudt/
+    sosa: http://www.w3.org/ns/sosa/
+    ssn: http://www.w3.org/ns/ssn/
+    time: http://www.w3.org/2006/time#
+    prov: http://www.w3.org/ns/prov#
+    dcterms: http://purl.org/dc/terms/
+    foaf: http://xmlns.com/foaf/0.1/
+    gr: http://purl.org/goodrelations/v1#
+
+default_prefix: uam
 default_range: string
+
+imports:
+    - linkml:types
+
 classes:
-  ExampleClass:
-    attributes:
-      example_attribute:
-        range: string
-        description: Example field
-slots:
-  label:
-    range: string
-    description: Human-readable label
-  sqlIdentifier:
-    range: string
-    description: Machine-friendly field name for databases
+    UsageAndMaintenance:
+        description: "Root class for usage and maintenance data model"
+        tree_root: true
+        attributes:
+            use_instructions:
+                range: UseInstructions
+                description: "Instructions for proper product use and operation"
+                annotations:
+                    sql_identifier: uam_use_instructions
+            maintenance_instructions:
+                range: MaintenanceInstructions
+                description: "Instructions for product maintenance and servicing"
+                annotations:
+                    sql_identifier: uam_maintenance_instructions
+            maintenance_schedule:
+                range: MaintenanceSchedule
+                description: "Planned maintenance activities and intervals"
+                annotations:
+                    sql_identifier: uam_maintenance_schedule
+            spare_parts_information:
+                range: SparePartsInformation
+                description: "Information about spare parts and replacements"
+                annotations:
+                    sql_identifier: uam_spare_parts_info
+            service_provider_information:
+                range: ServiceProviderInformation
+                description: "Information about authorized service providers"
+                annotations:
+                    sql_identifier: uam_service_provider_info
+
+    # Stage 1: Reference Information (Static)
+
+    UseInstructions:
+        description: "Instructions for proper product use and operation"
+        class_uri: schema:HowTo
+        attributes:
+            operating_manual_url:
+                range: string
+                description: "URL to the operating manual"
+                slot_uri: schema:url
+                annotations:
+                    sql_identifier: uam_inst_operating_manual_url
+                    owl.filler: uam:operating_manual_url_value
+            quick_start_guide:
+                range: string
+                description: "Quick start instructions for basic operation"
+                slot_uri: schema:text
+                annotations:
+                    sql_identifier: uam_inst_quick_start
+                    owl.filler: uam:quick_start_guide_value
+            safety_precautions:
+                range: string
+                description: "Safety precautions for product use"
+                slot_uri: schema:warning
+                annotations:
+                    sql_identifier: uam_inst_safety_precautions
+                    owl.filler: uam:safety_precautions_value
+            optimal_operating_parameters:
+                range: string
+                description: "Recommended operating parameters for optimal performance"
+                annotations:
+                    sql_identifier: uam_inst_optimal_params
+                    owl.filler: uam:optimal_operating_parameters_value
+            prohibited_uses:
+                range: string
+                description: "Uses that are prohibited or not recommended"
+                annotations:
+                    sql_identifier: uam_inst_prohibited_uses
+                    owl.filler: uam:prohibited_uses_value
+            training_requirements:
+                range: string
+                description: "Training required for safe operation"
+                annotations:
+                    sql_identifier: uam_inst_training_req
+                    owl.filler: uam:training_requirements_value
+            troubleshooting_guide:
+                range: string
+                description: "Common issues and troubleshooting steps"
+                slot_uri: schema:potentialAction
+                annotations:
+                    sql_identifier: uam_inst_troubleshooting
+                    owl.filler: uam:troubleshooting_guide_value
+
+    MaintenanceInstructions:
+        description: "Instructions for product maintenance and servicing"
+        attributes:
+            maintenance_manual_url:
+                range: string
+                description: "URL to the maintenance manual"
+                slot_uri: schema:url
+                annotations:
+                    sql_identifier: uam_maint_inst_manual_url
+                    owl.filler: uam:maintenance_manual_url_value
+            routine_maintenance_procedures:
+                range: string
+                description: "Procedures for routine maintenance tasks"
+                annotations:
+                    sql_identifier: uam_maint_inst_routine_proc
+                    owl.filler: uam:routine_maintenance_procedures_value
+            cleaning_instructions:
+                range: string
+                description: "Instructions for cleaning the product"
+                annotations:
+                    sql_identifier: uam_maint_inst_cleaning
+                    owl.filler: uam:cleaning_instructions_value
+            lubrication_requirements:
+                range: string
+                description: "Lubrication points and requirements"
+                annotations:
+                    sql_identifier: uam_maint_inst_lubrication
+                    owl.filler: uam:lubrication_requirements_value
+            inspection_checklists:
+                range: string
+                description: "Checklists for maintenance inspections"
+                annotations:
+                    sql_identifier: uam_maint_inst_inspection_lists
+                    owl.filler: uam:inspection_checklists_value
+            calibration_procedures:
+                range: string
+                description: "Procedures for calibration"
+                annotations:
+                    sql_identifier: uam_maint_inst_calibration_proc
+                    owl.filler: uam:calibration_procedures_value
+            storage_instructions:
+                range: string
+                description: "Instructions for proper storage when not in use"
+                annotations:
+                    sql_identifier: uam_maint_inst_storage
+                    owl.filler: uam:storage_instructions_value
+            decommissioning_procedures:
+                range: string
+                description: "Procedures for safe decommissioning"
+                annotations:
+                    sql_identifier: uam_maint_inst_decommissioning
+                    owl.filler: uam:decommissioning_procedures_value
+            special_tools_required:
+                range: string
+                description: "Special tools required for maintenance"
+                annotations:
+                    sql_identifier: uam_maint_inst_special_tools
+                    owl.filler: uam:special_tools_required_value
+            maintenance_safety_requirements:
+                range: string
+                description: "Safety requirements for maintenance activities"
+                annotations:
+                    sql_identifier: uam_maint_inst_safety_req
+                    owl.filler: uam:maintenance_safety_requirements_value
+
+    MaintenanceSchedule:
+        description: "Planned maintenance activities and intervals"
+        class_uri: schema:MaintenanceSchedule
+        attributes:
+            preventive_maintenance_intervals:
+                range: string
+                description: "Schedule for preventive maintenance activities"
+                annotations:
+                    sql_identifier: uam_sched_preventive_intervals
+                    owl.filler: uam:preventive_maintenance_intervals_value
+            predictive_maintenance_triggers:
+                range: string
+                description: "Conditions that trigger predictive maintenance"
+                annotations:
+                    sql_identifier: uam_sched_predictive_triggers
+                    owl.filler: uam:predictive_maintenance_triggers_value
+            mandatory_inspections:
+                range: string
+                description: "Schedule for mandatory inspections"
+                annotations:
+                    sql_identifier: uam_sched_mandatory_inspections
+                    owl.filler: uam:mandatory_inspections_value
+            calibration_schedule:
+                range: string
+                description: "Schedule for calibration activities"
+                annotations:
+                    sql_identifier: uam_sched_calibration
+                    owl.filler: uam:calibration_schedule_value
+            component_replacement_schedule:
+                range: string
+                description: "Schedule for component replacements"
+                annotations:
+                    sql_identifier: uam_sched_component_replacement
+                    owl.filler: uam:component_replacement_schedule_value
+
+    SparePartsInformation:
+        description: "Information about spare parts and replacements"
+        attributes:
+            critical_spare_parts_list:
+                range: string
+                description: "List of critical spare parts required"
+                slot_uri: gr:includes
+                annotations:
+                    sql_identifier: uam_spare_critical_list
+                    owl.filler: uam:critical_spare_parts_list_value
+            spare_parts_availability:
+                range: string
+                description: "Information about spare parts availability"
+                slot_uri: gr:availability
+                annotations:
+                    sql_identifier: uam_spare_availability
+                    owl.filler: uam:spare_parts_availability_value
+            parts_interchangeability:
+                range: string
+                description: "Information about interchangeable parts"
+                annotations:
+                    sql_identifier: uam_spare_interchangeable
+                    owl.filler: uam:parts_interchangeability_value
+            parts_suppliers:
+                range: string
+                description: "List of authorized parts suppliers"
+                slot_uri: gr:BusinessEntity
+                annotations:
+                    sql_identifier: uam_spare_suppliers
+                    owl.filler: uam:parts_suppliers_value
+            parts_ordering_information:
+                range: string
+                description: "Information on how to order spare parts"
+                annotations:
+                    sql_identifier: uam_spare_ordering_info
+                    owl.filler: uam:parts_ordering_information_value
+
+    ServiceProviderInformation:
+        description: "Information about authorized service providers"
+        class_uri: schema:Service
+        attributes:
+            authorized_service_centers:
+                range: string
+                description: "List of authorized service centers"
+                slot_uri: schema:provider
+                annotations:
+                    sql_identifier: uam_service_centers
+                    owl.filler: uam:authorized_service_centers_value
+            service_hotline:
+                range: string
+                description: "Contact number for service support"
+                slot_uri: schema:telephone
+                annotations:
+                    sql_identifier: uam_service_hotline
+                    owl.filler: uam:service_hotline_value
+            remote_support_availability:
+                range: boolean
+                description: "Whether remote support is available"
+                annotations:
+                    sql_identifier: uam_service_remote_support
+                    owl.filler: uam:remote_support_availability_value
+            service_contract_options:
+                range: string
+                description: "Available service contract options"
+                slot_uri: schema:offers
+                annotations:
+                    sql_identifier: uam_service_contracts
+                    owl.filler: uam:service_contract_options_value
+            warranty_service_terms:
+                range: string
+                description: "Terms and conditions for warranty service"
+                slot_uri: schema:termsOfService
+                annotations:
+                    sql_identifier: uam_service_warranty_terms
+                    owl.filler: uam:warranty_service_terms_value
