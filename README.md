@@ -212,6 +212,7 @@ https://codeberg.org/CE-RISE-models/usage-and-maintenance/src/tag/pages-v1.2.0/g
 
 Files available in that directory typically include:
 
+- schema.yaml
 - schema.json
 - shacl.ttl
 - model.ttl
