@@ -1,6 +1,6 @@
 # CE-RISE Usage and Maintenance
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17816062.svg)](https://doi.org/10.5281/zenodo.17816062) [![Schemas](https://img.shields.io/badge/Generated%20Schema%20Files-JSON%2C%20SHACL%2C%20OWL-32CD32)](https://ce-rise-models.codeberg.page/usage-and-maintenance/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17816062.svg)](https://doi.org/10.5281/zenodo.17816062) [![Schemas](https://img.shields.io/badge/Schema%20Files-LinkML%2C%20JSON%2C%20SHACL%2C%20OWL-32CD32)](https://ce-rise-models.codeberg.page/usage-and-maintenance/)
 
 Repository for the CE-RISE Usage and Maintenance data model that captures the operational lifecycle of products through a mixed temporal approach: static reference information (instructions, schedules), accumulating state-based metrics (usage hours, performance), and discrete event-based records (maintenance, repairs). It enables comprehensive tracking of how products are used, maintained, and serviced throughout their operational life.
 
@@ -212,6 +212,7 @@ https://codeberg.org/CE-RISE-models/usage-and-maintenance/src/tag/pages-v1.2.0/g
 
 Files available in that directory typically include:
 
+- schema.yaml
 - schema.json
 - shacl.ttl
 - model.ttl
