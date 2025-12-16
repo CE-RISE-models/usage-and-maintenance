@@ -82,6 +82,7 @@ classes:
                 annotations:
                     sql_identifier: uam_inst_operating_manual_url
                     owl.filler: uam:operating_manual_url_value
+                    references: "Jensen et al."
             quick_start_guide:
                 range: string
                 description: "Quick start instructions for basic operation"
@@ -96,6 +97,7 @@ classes:
                 annotations:
                     sql_identifier: uam_inst_safety_precautions
                     owl.filler: uam:safety_precautions_value
+                    references: "CIRPASS; Jensen et al.; King et al."
             optimal_operating_parameters:
                 range: string
                 description: "Recommended operating parameters for optimal performance"
@@ -132,6 +134,7 @@ classes:
                 annotations:
                     sql_identifier: uam_maint_inst_manual_url
                     owl.filler: uam:maintenance_manual_url_value
+                    references: "ESPR; CIRPASS; King et al.; Jensen et al.; CE-RISE Deliverable 1.1"
             routine_maintenance_procedures:
                 range: string
                 description: "Procedures for routine maintenance tasks"
@@ -203,6 +206,7 @@ classes:
                 annotations:
                     sql_identifier: uam_sched_predictive_triggers
                     owl.filler: uam:predictive_maintenance_triggers_value
+                    references: "Berger et al.; CE-RISE Deliverable 1.1"
             mandatory_inspections:
                 range: string
                 description: "Schedule for mandatory inspections"
@@ -239,6 +243,7 @@ classes:
                 annotations:
                     sql_identifier: uam_spare_availability
                     owl.filler: uam:spare_parts_availability_value
+                    references: "ESPR; King et al.; CE-RISE Deliverable 1.1"
             parts_interchangeability:
                 range: string
                 description: "Information about interchangeable parts"
@@ -258,6 +263,7 @@ classes:
                 annotations:
                     sql_identifier: uam_spare_ordering_info
                     owl.filler: uam:parts_ordering_information_value
+                    references: "CE-RISE Deliverable 1.1"
 
     ServiceProviderInformation:
         description: "Information about authorized service providers"
@@ -335,12 +341,14 @@ classes:
                     sql_identifier: uam_usage_total_hours
                     owl.filler: uam:total_operating_hours_value
                     qudt:unit: qudt:Hour
+                    references: "Jensen et al.; CE-RISE Deliverable 1.1"
             power_on_cycles:
                 range: integer
                 description: "Number of times the product has been powered on"
                 annotations:
                     sql_identifier: uam_usage_power_cycles
                     owl.filler: uam:power_on_cycles_value
+                    references: "Jensen et al.; CE-RISE Deliverable 1.1"
             usage_intensity:
                 range: string
                 description: "Level of usage intensity (light, moderate, heavy, continuous)"
@@ -408,12 +416,14 @@ classes:
                 annotations:
                     sql_identifier: uam_op_environment
                     owl.filler: uam:environmental_conditions_value
+                    references: "Jensen et al.; CE-RISE Deliverable 1.1"
             operating_location_type:
                 range: string
                 description: "Type of location where product is typically operated (indoor, outdoor, mixed, industrial, residential, commercial)"
                 annotations:
                     sql_identifier: uam_op_location_type
                     owl.filler: uam:operating_location_type_value
+                    references: "Jensen et al.; CE-RISE Deliverable 1.1"
 
     UsagePatterns:
         description: "Patterns and behaviors in product usage"
@@ -517,6 +527,7 @@ classes:
                 annotations:
                     sql_identifier: uam_maint_hist_date
                     owl.filler: uam:maintenance_date_value
+                    references: "CIRPASS; CE-RISE Deliverable 1.1"
             maintenance_type:
                 range: string
                 description: "Type of maintenance performed (preventive, predictive, corrective, inspection, calibration)"
@@ -530,6 +541,7 @@ classes:
                 annotations:
                     sql_identifier: uam_maint_hist_description
                     owl.filler: uam:maintenance_description_value
+                    references: "King et al.; CE-RISE Deliverable 1.1"
             technician_id:
                 range: string
                 description: "Identifier of technician who performed maintenance"
@@ -544,12 +556,14 @@ classes:
                 annotations:
                     sql_identifier: uam_maint_hist_service_org
                     owl.filler: uam:service_organization_value
+                    references: "King et al.; CE-RISE Deliverable 1.1"
             parts_replaced:
                 range: string
                 description: "List of parts replaced during maintenance"
                 annotations:
                     sql_identifier: uam_maint_hist_parts_replaced
                     owl.filler: uam:parts_replaced_value
+                    references: "CIRPASS; CE-RISE Deliverable 1.1"
             maintenance_cost:
                 range: float
                 description: "Cost of the maintenance activity"
@@ -557,6 +571,7 @@ classes:
                 annotations:
                     sql_identifier: uam_maint_hist_cost
                     owl.filler: uam:maintenance_cost_value
+                    references: "CIRPASS; CE-RISE Deliverable 1.1"
             next_maintenance_due:
                 range: date
                 description: "Date when next maintenance is due"
@@ -627,6 +642,7 @@ classes:
                 annotations:
                     sql_identifier: uam_repair_hist_cost
                     owl.filler: uam:repair_cost_value
+                    references: "CIRPASS"
             warranty_coverage:
                 range: boolean
                 description: "Whether repair was covered under warranty"
