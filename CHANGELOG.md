@@ -2,6 +2,11 @@
 
 All notable changes to the CE-RISE Usage and Maintenance Data Model will be documented in this file.
 
+## [0.1.0] - 2026-05-12
+
+### Added
+- Optional links from usage metrics, operational conditions, performance tracking, maintenance history, and repair history records to the CE-RISE uncertainty quantification, metrological traceability, and data quality framework utility models.
+
 ## [0.0.2] - 2025-12-16
 
 ### Added

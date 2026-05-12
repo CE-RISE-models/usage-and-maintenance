@@ -5,7 +5,7 @@ description: >
     Data model for capturing product operation, usage patterns, maintenance activities,
     and related instructions throughout the product lifecycle.
 license: CC BY-NC 4.0
-version: 0.0.1
+version: 0.1.0
 
 prefixes:
     linkml: https://w3id.org/linkml/
@@ -21,12 +21,18 @@ prefixes:
     dcterms: http://purl.org/dc/terms/
     foaf: http://xmlns.com/foaf/0.1/
     gr: http://purl.org/goodrelations/v1#
+    uq: https://ce-rise-models.codeberg.page/uncertainty-quantification/
+    mt: https://ce-rise-models.codeberg.page/metrological-traceability/
+    dqf: https://ce-rise-models.codeberg.page/data-quality-framework/
 
 default_prefix: uam
 default_range: string
 
 imports:
     - linkml:types
+    - https://codeberg.org/CE-RISE-models/uncertainty-quantification/raw/tag/pages-v0.0.3/generated/schema
+    - https://codeberg.org/CE-RISE-models/metrological-traceability/raw/tag/pages-v0.0.3/generated/schema
+    - https://codeberg.org/CE-RISE-models/data-quality-framework/raw/tag/pages-v0.0.3/generated/schema
 
 classes:
     UsageAndMaintenance:
@@ -383,6 +389,36 @@ classes:
                     sql_identifier: uam_usage_avg_daily
                     owl.filler: uam:average_daily_usage_value
                     qudt:unit: qudt:Hour
+            usage_metrics_uncertainty_statements:
+                range: UncertaintyStatement
+                description: "Optional uncertainty statements for accumulated usage measurements such as operating hours, cycles, energy consumption, distance, and average usage"
+                multivalued: true
+                inlined: true
+                inlined_as_list: true
+                required: false
+                annotations:
+                    sql_identifier: uam_usage_metrics_uncertainty
+                    owl.filler: uq:uncertaintyStatement
+            usage_metrics_metrological_traceability_statements:
+                range: TraceabilityStatement
+                description: "Optional metrological traceability statements for usage measurements, counters, meters, sensors, methods, calibrations, or reference standards"
+                multivalued: true
+                inlined: true
+                inlined_as_list: true
+                required: false
+                annotations:
+                    sql_identifier: uam_usage_metrics_metrological_traceability
+                    owl.filler: mt:traceabilityStatement
+            usage_metrics_data_quality_assessments:
+                range: DataQualityAssessment
+                description: "Optional data quality assessments for usage metrics, evidence, provenance, completeness, timeliness, or representativeness"
+                multivalued: true
+                inlined: true
+                inlined_as_list: true
+                required: false
+                annotations:
+                    sql_identifier: uam_usage_metrics_data_quality
+                    owl.filler: dqf:dataQualityAssessment
 
     OperationalConditions:
         description: "Environmental and operational parameters during product use"
@@ -424,6 +460,36 @@ classes:
                     sql_identifier: uam_op_location_type
                     owl.filler: uam:operating_location_type_value
                     references: "Jensen et al.; CE-RISE Deliverable 1.1"
+            operational_conditions_uncertainty_statements:
+                range: UncertaintyStatement
+                description: "Optional uncertainty statements for operating temperature, humidity, vibration, location, or environmental condition summaries"
+                multivalued: true
+                inlined: true
+                inlined_as_list: true
+                required: false
+                annotations:
+                    sql_identifier: uam_op_conditions_uncertainty
+                    owl.filler: uq:uncertaintyStatement
+            operational_conditions_metrological_traceability_statements:
+                range: TraceabilityStatement
+                description: "Optional metrological traceability statements for operational condition measurements, sensors, methods, calibrations, or reference standards"
+                multivalued: true
+                inlined: true
+                inlined_as_list: true
+                required: false
+                annotations:
+                    sql_identifier: uam_op_conditions_metrological_traceability
+                    owl.filler: mt:traceabilityStatement
+            operational_conditions_data_quality_assessments:
+                range: DataQualityAssessment
+                description: "Optional data quality assessments for operational condition data, evidence, provenance, completeness, timeliness, or representativeness"
+                multivalued: true
+                inlined: true
+                inlined_as_list: true
+                required: false
+                annotations:
+                    sql_identifier: uam_op_conditions_data_quality
+                    owl.filler: dqf:dataQualityAssessment
 
     UsagePatterns:
         description: "Patterns and behaviors in product usage"
@@ -497,6 +563,36 @@ classes:
                     sql_identifier: uam_perf_availability
                     owl.filler: uam:availability_percentage_value
                     qudt:unit: qudt:Percent
+            performance_tracking_uncertainty_statements:
+                range: UncertaintyStatement
+                description: "Optional uncertainty statements for performance, degradation, reliability, MTBF, or availability metrics"
+                multivalued: true
+                inlined: true
+                inlined_as_list: true
+                required: false
+                annotations:
+                    sql_identifier: uam_perf_tracking_uncertainty
+                    owl.filler: uq:uncertaintyStatement
+            performance_tracking_metrological_traceability_statements:
+                range: TraceabilityStatement
+                description: "Optional metrological traceability statements for performance measurements, methods, sensors, calibrations, baselines, or reference standards"
+                multivalued: true
+                inlined: true
+                inlined_as_list: true
+                required: false
+                annotations:
+                    sql_identifier: uam_perf_tracking_metrological_traceability
+                    owl.filler: mt:traceabilityStatement
+            performance_tracking_data_quality_assessments:
+                range: DataQualityAssessment
+                description: "Optional data quality assessments for performance tracking data, evidence, provenance, completeness, timeliness, or representativeness"
+                multivalued: true
+                inlined: true
+                inlined_as_list: true
+                required: false
+                annotations:
+                    sql_identifier: uam_perf_tracking_data_quality
+                    owl.filler: dqf:dataQualityAssessment
 
     # Stage 3: Maintenance/Repair Events (Event-Based)
 
@@ -591,6 +687,36 @@ classes:
                 annotations:
                     sql_identifier: uam_maint_hist_effectiveness
                     owl.filler: uam:maintenance_effectiveness_value
+            maintenance_history_uncertainty_statements:
+                range: UncertaintyStatement
+                description: "Optional uncertainty statements for maintenance cost, duration, effectiveness, next-due dates, or other estimated maintenance-event values"
+                multivalued: true
+                inlined: true
+                inlined_as_list: true
+                required: false
+                annotations:
+                    sql_identifier: uam_maint_hist_uncertainty
+                    owl.filler: uq:uncertaintyStatement
+            maintenance_history_metrological_traceability_statements:
+                range: TraceabilityStatement
+                description: "Optional metrological traceability statements for maintenance events involving inspections, calibration, measurements, tools, methods, standards, or reference materials"
+                multivalued: true
+                inlined: true
+                inlined_as_list: true
+                required: false
+                annotations:
+                    sql_identifier: uam_maint_hist_metrological_traceability
+                    owl.filler: mt:traceabilityStatement
+            maintenance_history_data_quality_assessments:
+                range: DataQualityAssessment
+                description: "Optional data quality assessments for maintenance event records, evidence, provenance, completeness, timeliness, or representativeness"
+                multivalued: true
+                inlined: true
+                inlined_as_list: true
+                required: false
+                annotations:
+                    sql_identifier: uam_maint_hist_data_quality
+                    owl.filler: dqf:dataQualityAssessment
 
     RepairHistory:
         description: "Record of repairs performed on the product (event-based)"
@@ -668,3 +794,33 @@ classes:
                 annotations:
                     sql_identifier: uam_repair_hist_failure_category
                     owl.filler: uam:failure_category_value
+            repair_history_uncertainty_statements:
+                range: UncertaintyStatement
+                description: "Optional uncertainty statements for repair cost, duration, downtime, effectiveness, root-cause assessment, or other estimated repair-event values"
+                multivalued: true
+                inlined: true
+                inlined_as_list: true
+                required: false
+                annotations:
+                    sql_identifier: uam_repair_hist_uncertainty
+                    owl.filler: uq:uncertaintyStatement
+            repair_history_metrological_traceability_statements:
+                range: TraceabilityStatement
+                description: "Optional metrological traceability statements for repair events involving measurements, calibrated tools, inspection methods, standards, or reference materials"
+                multivalued: true
+                inlined: true
+                inlined_as_list: true
+                required: false
+                annotations:
+                    sql_identifier: uam_repair_hist_metrological_traceability
+                    owl.filler: mt:traceabilityStatement
+            repair_history_data_quality_assessments:
+                range: DataQualityAssessment
+                description: "Optional data quality assessments for repair event records, evidence, provenance, completeness, timeliness, or representativeness"
+                multivalued: true
+                inlined: true
+                inlined_as_list: true
+                required: false
+                annotations:
+                    sql_identifier: uam_repair_hist_data_quality
+                    owl.filler: dqf:dataQualityAssessment

@@ -190,6 +190,7 @@ This identifier system enables seamless integration with databases and ensures c
 - **DCMI (Dublin Core)** - Metadata terms for documentation and records
 - **FOAF** - For service provider and technician identification
 - **RDF Data Cube** - For structuring multi-dimensional usage metrics
+- **CE-RISE Utility Models** - Selected usage, operational condition, performance, maintenance, and repair records can optionally reference `uncertainty-quantification`, `metrological-traceability`, and `data-quality-framework` records
 
 ## Publishing
 
