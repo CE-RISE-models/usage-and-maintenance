@@ -2,7 +2,7 @@
 
 All notable changes to the CE-RISE Usage and Maintenance Data Model will be documented in this file.
 
-## [0.1.1] - 2026-06-23
+## [0.1.1] - 2026-06-24
 
 ### Changed
 - **Breaking:** `MaintenanceHistory.parts_replaced` and `RepairHistory.components_replaced` changed from free-text `string` to a structured, repeatable `ReplacedComponent` object.
