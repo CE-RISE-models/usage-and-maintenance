@@ -86,7 +86,7 @@ UsageAndMaintenance (root)
     │   ├── MaintenanceDescription
     │   ├── TechnicianId
     │   ├── ServiceOrganization
-    │   ├── PartsReplaced
+    │   ├── PartsReplaced (repeatable ReplacedComponent: name, old/new part & serial, manufacturer, quantity, reason, condition)
     │   ├── MaintenanceCost
     │   ├── NextMaintenanceDue
     │   ├── MaintenanceDuration
@@ -96,13 +96,24 @@ UsageAndMaintenance (root)
     │   ├── FailureDescription
     │   ├── RootCauseAnalysis
     │   ├── RepairActionsTaken
-    │   ├── ComponentsReplaced
+    │   ├── ComponentsReplaced (repeatable ReplacedComponent: name, old/new part & serial, manufacturer, quantity, reason, condition)
     │   ├── RepairDuration
     │   ├── RepairCost
     │   ├── WarrantyCoverage
     │   ├── RepairEffectiveness
     │   ├── DowntimeCaused
     │   └── FailureCategory
+    ├── SoftwarePreparation (EVENT-BASED, MULTIVALUED - refurbishment OS/software setup)
+    │   ├── PreparationDate
+    │   ├── OSImage
+    │   ├── LicenseStatus
+    │   ├── DriverPack
+    │   ├── UpdateState
+    │   ├── BIOSConfiguration
+    │   ├── DeviceResetState
+    │   ├── FinalBootResult
+    │   ├── PreparedBy
+    │   └── PreparationNotes
     ├── SparePartsInformation (STATE)
     │   ├── CriticalSparePartsList
     │   ├── SparePartsAvailability
@@ -168,6 +179,8 @@ This identifier system enables seamless integration with databases and ensures c
 ---
 
 ## Development Roadmap
+
+> **Note:** This roadmap documents the model's initial development. The data model has since been further developed and refined — see [CHANGELOG.md](CHANGELOG.md) for the authoritative, up-to-date record of changes.
 
 | Step | Component | Sub-Components | Criticalities Identified | Solutions Planned | Status | Missing/TODO |
 |------|-----------|---------------|-------------------------|-------------------|--------|--------------|
