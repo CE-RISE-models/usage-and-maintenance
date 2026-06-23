@@ -611,6 +611,12 @@ classes:
                 multivalued: true
                 annotations:
                     sql_identifier: uam_repair_history
+            software_preparation:
+                range: SoftwarePreparation
+                description: "Records of OS/software preparation performed during refurbishment or servicing"
+                multivalued: true
+                annotations:
+                    sql_identifier: uam_software_preparation
 
     MaintenanceHistory:
         description: "Record of completed maintenance activities (event-based)"
@@ -831,6 +837,81 @@ classes:
                 annotations:
                     sql_identifier: uam_repair_hist_data_quality
                     owl.filler: dqf:dataQualityAssessment
+
+    SoftwarePreparation:
+        description: "Record of OS and software preparation performed on a device during refurbishment or servicing. Version snapshots (BIOS/firmware/OS/driver before-after) are captured by diagnostic-results SoftwareVersionRecord; this class records the preparation outcome (image, licensing, configuration, reset, boot result)."
+        class_uri: prov:Activity
+        attributes:
+            preparation_date:
+                range: date
+                description: "Date the software preparation was performed"
+                slot_uri: dcterms:date
+                annotations:
+                    sql_identifier: uam_swprep_date
+                    owl.filler: uam:preparation_date_value
+            os_image:
+                range: string
+                description: "Operating system image installed (name / identifier)"
+                slot_uri: schema:name
+                annotations:
+                    sql_identifier: uam_swprep_os_image
+                    owl.filler: uam:os_image_value
+            license_status:
+                range: string
+                description: "Licensing basis or status of the installed software (e.g. OEM, volume, reused, none)"
+                slot_uri: schema:license
+                annotations:
+                    sql_identifier: uam_swprep_license_status
+                    owl.filler: uam:license_status_value
+            driver_pack:
+                range: string
+                description: "Driver pack installed (name / version)"
+                slot_uri: schema:softwareVersion
+                annotations:
+                    sql_identifier: uam_swprep_driver_pack
+                    owl.filler: uam:driver_pack_value
+            update_state:
+                range: string
+                description: "State of software updates after preparation (e.g. fully updated, pending updates)"
+                slot_uri: schema:actionStatus
+                annotations:
+                    sql_identifier: uam_swprep_update_state
+                    owl.filler: uam:update_state_value
+            bios_configuration:
+                range: string
+                description: "BIOS / firmware configuration settings applied"
+                slot_uri: dcterms:description
+                annotations:
+                    sql_identifier: uam_swprep_bios_config
+                    owl.filler: uam:bios_configuration_value
+            device_reset_state:
+                range: string
+                description: "Device reset / factory state after preparation (e.g. factory reset, OOBE-ready)"
+                slot_uri: schema:actionStatus
+                annotations:
+                    sql_identifier: uam_swprep_reset_state
+                    owl.filler: uam:device_reset_state_value
+            final_boot_result:
+                range: string
+                description: "Result of the final boot test after preparation"
+                slot_uri: schema:result
+                annotations:
+                    sql_identifier: uam_swprep_final_boot_result
+                    owl.filler: uam:final_boot_result_value
+            prepared_by:
+                range: string
+                description: "Technician, organisation, or system that performed the preparation"
+                slot_uri: prov:wasAssociatedWith
+                annotations:
+                    sql_identifier: uam_swprep_prepared_by
+                    owl.filler: uam:prepared_by_value
+            preparation_notes:
+                range: string
+                description: "Free-text notes about the software preparation"
+                slot_uri: dcterms:description
+                annotations:
+                    sql_identifier: uam_swprep_notes
+                    owl.filler: uam:preparation_notes_value
 
     ReplacedComponent:
         description: "Structured record of a single part or component replaced during maintenance or repair. Harmonised with diagnostic-results ReplacedPart and traceability RefurbishmentEvent."
