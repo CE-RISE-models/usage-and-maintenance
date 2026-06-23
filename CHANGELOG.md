@@ -5,11 +5,11 @@ All notable changes to the CE-RISE Usage and Maintenance Data Model will be docu
 ## [Unreleased]
 
 ### Changed
-- **Breaking:** `MaintenanceHistory.parts_replaced` and `RepairHistory.components_replaced` changed from free-text `string` to a structured, repeatable `ReplacedComponent` object (feedback item #12).
+- **Breaking:** `MaintenanceHistory.parts_replaced` and `RepairHistory.components_replaced` changed from free-text `string` to a structured, repeatable `ReplacedComponent` object.
 
 ### Added
-- `ReplacedComponent` class (component name, old/new part number, old/new serial number, manufacturer, quantity, reason, condition), typed with schema.org / Dublin Core via `slot_uri`. Harmonised with the diagnostic-results `ReplacedPart` class and the structured replacement object planned for traceability `RefurbishmentEvent` (item #33).
-- `SoftwarePreparation` class and a new `software_preparation` track on `MaintenanceRepairRelatedData`, recording the OS/software preparation outcome during refurbishment: OS image, license status, driver pack, update state, BIOS configuration, device reset state, final boot result, prepared-by, notes (feedback item #13). Raw BIOS/firmware/OS/driver version snapshots remain in the diagnostic-results `SoftwareVersionRecord` (item #7) to avoid duplication.
+- `ReplacedComponent` class (component name, old/new part number, old/new serial number, manufacturer, quantity, reason, condition), typed with schema.org / Dublin Core via `slot_uri`. Harmonised with the diagnostic-results `ReplacedPart` class and the structured replacement object used for traceability `RefurbishmentEvent`.
+- `SoftwarePreparation` class and a new `software_preparation` track on `MaintenanceRepairRelatedData`, recording the OS/software preparation outcome during refurbishment: OS image, license status, driver pack, update state, BIOS configuration, device reset state, final boot result, prepared-by, notes. Raw BIOS/firmware/OS/driver version snapshots remain in the diagnostic-results `SoftwareVersionRecord` to avoid duplication.
 
 ## [0.1.0] - 2026-05-12
 
