@@ -654,8 +654,11 @@ classes:
                     owl.filler: uam:service_organization_value
                     references: "King et al.; CE-RISE Deliverable 1.1"
             parts_replaced:
-                range: string
-                description: "List of parts replaced during maintenance"
+                range: ReplacedComponent
+                description: "Structured records of parts replaced during maintenance"
+                multivalued: true
+                inlined: true
+                inlined_as_list: true
                 annotations:
                     sql_identifier: uam_maint_hist_parts_replaced
                     owl.filler: uam:parts_replaced_value
@@ -749,11 +752,15 @@ classes:
                     sql_identifier: uam_repair_hist_actions
                     owl.filler: uam:repair_actions_taken_value
             components_replaced:
-                range: string
-                description: "List of components replaced during repair"
+                range: ReplacedComponent
+                description: "Structured records of components replaced during repair"
+                multivalued: true
+                inlined: true
+                inlined_as_list: true
                 annotations:
                     sql_identifier: uam_repair_hist_components
                     owl.filler: uam:components_replaced_value
+                    references: "CIRPASS; CE-RISE Deliverable 1.1"
             repair_duration:
                 range: float
                 description: "Time taken to complete the repair"
@@ -824,3 +831,70 @@ classes:
                 annotations:
                     sql_identifier: uam_repair_hist_data_quality
                     owl.filler: dqf:dataQualityAssessment
+
+    ReplacedComponent:
+        description: "Structured record of a single part or component replaced during maintenance or repair. Harmonised with diagnostic-results ReplacedPart and traceability RefurbishmentEvent."
+        attributes:
+            component_name:
+                range: string
+                description: "Name of the replaced part or component"
+                slot_uri: schema:name
+                annotations:
+                    sql_identifier: uam_replaced_component_name
+                    owl.filler: uam:component_name_value
+            old_part_number:
+                range: string
+                description: "Part number of the removed part"
+                slot_uri: schema:identifier
+                annotations:
+                    sql_identifier: uam_replaced_old_part_number
+                    owl.filler: uam:old_part_number_value
+            old_serial_number:
+                range: string
+                description: "Serial number of the removed part"
+                slot_uri: schema:serialNumber
+                annotations:
+                    sql_identifier: uam_replaced_old_serial_number
+                    owl.filler: uam:old_serial_number_value
+            new_part_number:
+                range: string
+                description: "Part number of the installed replacement part"
+                slot_uri: schema:identifier
+                annotations:
+                    sql_identifier: uam_replaced_new_part_number
+                    owl.filler: uam:new_part_number_value
+            new_serial_number:
+                range: string
+                description: "Serial number of the installed replacement part"
+                slot_uri: schema:serialNumber
+                annotations:
+                    sql_identifier: uam_replaced_new_serial_number
+                    owl.filler: uam:new_serial_number_value
+            manufacturer:
+                range: string
+                description: "Manufacturer of the replacement part"
+                slot_uri: schema:manufacturer
+                annotations:
+                    sql_identifier: uam_replaced_manufacturer
+                    owl.filler: uam:manufacturer_value
+            replacement_quantity:
+                range: integer
+                description: "Quantity of parts replaced"
+                slot_uri: schema:value
+                annotations:
+                    sql_identifier: uam_replaced_quantity
+                    owl.filler: uam:replacement_quantity_value
+            replacement_reason:
+                range: string
+                description: "Reason for the replacement"
+                slot_uri: dcterms:description
+                annotations:
+                    sql_identifier: uam_replaced_reason
+                    owl.filler: uam:replacement_reason_value
+            replacement_condition:
+                range: string
+                description: "Condition of the replacement part (e.g. new, refurbished, used)"
+                slot_uri: schema:itemCondition
+                annotations:
+                    sql_identifier: uam_replaced_condition
+                    owl.filler: uam:replacement_condition_value

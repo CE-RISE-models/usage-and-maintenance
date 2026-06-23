@@ -2,6 +2,14 @@
 
 All notable changes to the CE-RISE Usage and Maintenance Data Model will be documented in this file.
 
+## [Unreleased]
+
+### Changed
+- **Breaking:** `MaintenanceHistory.parts_replaced` and `RepairHistory.components_replaced` changed from free-text `string` to a structured, repeatable `ReplacedComponent` object (feedback item #12).
+
+### Added
+- `ReplacedComponent` class (component name, old/new part number, old/new serial number, manufacturer, quantity, reason, condition), typed with schema.org / Dublin Core via `slot_uri`. Harmonised with the diagnostic-results `ReplacedPart` class and the structured replacement object planned for traceability `RefurbishmentEvent` (item #33).
+
 ## [0.1.0] - 2026-05-12
 
 ### Added
